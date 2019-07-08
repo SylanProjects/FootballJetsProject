@@ -16,13 +16,10 @@ public class PlayerController : MonoBehaviour
     public Text keys;
     public Text StaminaText;
     public float deadZone;
+    public AudioScript audioSource;
 
 
     private int stamina;
-
-    
-
-
     private Rigidbody2D rb2d;
     private PlayerController sprint;
 
@@ -67,8 +64,12 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag ("PickUp")) {
             other.gameObject.SetActive (false);
-            
         }
+        if(other.gameObject.CompareTag("Ball"))
+        {
+            audioSource.Play();
+        }
+
 
     }
     public void ResetPosition()
@@ -113,5 +114,6 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+   
     
 }
