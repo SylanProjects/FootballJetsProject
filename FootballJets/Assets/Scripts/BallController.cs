@@ -10,20 +10,13 @@ public class BallController : MonoBehaviour
     public int score1;
     public int score2;
     public Text scoreText;
-    public AudioSource soundSource;
-
-    public AudioClip wallHitSfx;
-    public AudioClip goalScore;
+    public Rigidbody2D rb; 
+    
 
     private Rigidbody2D rb2d;
    
     // Start is called before the first frame update
-    public void PlaySound(AudioClip audioC)
-    {
-        soundSource.clip = audioC;
-        soundSource.Play();
-
-    }
+   
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -41,22 +34,15 @@ public class BallController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("LeftGoal"))
         {
-
-            PlaySound(goalScore);
             score1 += 1;
             SetScoreText();
             SetPlayerPositions();
         }
         if (other.gameObject.CompareTag("RightGoal"))
         {
-            PlaySound(goalScore);
             score2 += 1;
             SetScoreText();
             SetPlayerPositions();
-        }
-        if (other.gameObject.CompareTag("Wall"))
-        {
-            PlaySound(wallHitSfx);
         }
     }
     void SetScoreText()
@@ -69,5 +55,10 @@ public class BallController : MonoBehaviour
         player2.ResetPosition();
         this.transform.position = new Vector2(0, 0);
         rb2d.velocity = new Vector2(0, 0);
+    }
+
+    public void Bounce()
+    {
+        rb2d.AddForce(-rb2d.velocity);
     }
 }

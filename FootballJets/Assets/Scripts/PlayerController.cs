@@ -15,10 +15,10 @@ public class PlayerController : MonoBehaviour
     public int defaultYPos;
     public Text keys;
     public Text StaminaText;
+    public Text HealthText;
     public float deadZone;
-    public AudioScript audioSource;
 
-
+    private float health;
     private int stamina;
     private Rigidbody2D rb2d;
     private PlayerController sprint;
@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D> ();
         defaultSpeed = speed;
         stamina = 100;
+        health = 100f;
         
     }
     
@@ -54,8 +55,12 @@ public class PlayerController : MonoBehaviour
         rb2d.AddForce(movement * speed);
         Sprint();
 
+        HealthText.text = "Health: " + health;
         StaminaText.text = "Stamina: " + stamina;
+        
         //keys.text = speed + ", ";
+        ReplenishHealth();
+
 
     }
 
@@ -65,10 +70,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag ("PickUp")) {
             other.gameObject.SetActive (false);
         }
-        if(other.gameObject.CompareTag("Ball"))
-        {
-            audioSource.Play();
-        }
+        
 
 
     }
@@ -95,7 +97,7 @@ public class PlayerController : MonoBehaviour
         float moveHorizontal = Input.GetAxis(horizontal);
         float moveVertical = Input.GetAxis(vertical);
 
-        if (sprint < 0 & (moveHorizontal != 0 || moveVertical != 0))
+        if (sprint < 0 & (moveHorizontal >= 0.3 || moveVertical >= 0.3))
         {
             stamina -= 2;
         }
@@ -113,6 +115,28 @@ public class PlayerController : MonoBehaviour
             stamina = 0;
         }
         
+    }
+    public void GetHit(float power)
+    {
+        health -= power;
+    }
+
+    public void ReplenishHealth()
+    {
+        if(health >= 100f)
+        {
+            health = 100f;
+        }
+        else if(health < 0f)
+        {
+            ResetPosition();
+            health = 100f;
+            
+        }
+        else
+        {
+            health += 0.01f;
+        }
     }
    
     
