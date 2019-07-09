@@ -9,6 +9,7 @@ public class StatsUI : MonoBehaviour
     public Text healthText;
     public Text staminaText;
     public Text shieldText;
+    
     void Start()
     {
         
@@ -17,9 +18,13 @@ public class StatsUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         healthText.text = "Health: " + stats.health;
         staminaText.text = "Stamina: " + stats.stamina;
-        shieldText.text = "Shield: " + (100 - stats.shield);
+        float shield = 100 - stats.shield;
+        shieldText.text = "Shield: " + shield;
+        
 
     }
+    
 }

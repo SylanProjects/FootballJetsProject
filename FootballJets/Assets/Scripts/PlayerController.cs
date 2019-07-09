@@ -5,22 +5,16 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public PlayerConfig playerConfig;
     public float speed;
     public float defaultSpeed;
     public float sprintPower;
-    public string horizontal;
-    public string vertical;
-    public string sprintKey;
-    public int defaultXPos;
-    public int defaultYPos;
     public Text keys;
-    public Text StaminaText;
-    public Text HealthText;
+    
+    
     public float deadZone;
     public Stats stats;
 
-    //private float health;
-    //private int stamina;
     private Rigidbody2D rb2d;
     private PlayerController sprint;
 
@@ -28,14 +22,12 @@ public class PlayerController : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D> ();
         defaultSpeed = speed;
-       // stamina = 100;
-       // health = 100f;
-        
+    
     }
     
     void FixedUpdate() {
-        float moveHorizontal = Input.GetAxis (horizontal);
-        float moveVertical = Input.GetAxis (vertical);
+        float moveHorizontal = Input.GetAxis (playerConfig.horizontalL);
+        float moveVertical = Input.GetAxis (playerConfig.verticalL);
         float h = moveHorizontal;
         float v = moveVertical;
         if (moveHorizontal < deadZone && moveHorizontal > -deadZone)
@@ -47,24 +39,14 @@ public class PlayerController : MonoBehaviour
         {
             v = 0;
         }
-        
-        
 
         Vector2 movement = new Vector2(h, v);
-        
 
         rb2d.AddForce(movement * speed);
         Sprint();
 
-        
-        
-        //keys.text = speed + ", ";
-        //ReplenishHealth();
-
-
     }
 
-   
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag ("PickUp")) {
@@ -77,14 +59,14 @@ public class PlayerController : MonoBehaviour
     public void ResetPosition()
     {
         rb2d.velocity = new Vector2(0, 0);
-        this.transform.position = new Vector2(defaultXPos, defaultYPos);
+        this.transform.position = new Vector2(playerConfig.defaultXPos, playerConfig.defaultYPos);
         
     }
 
     private void Sprint()
     {
         // Get a key input 
-        float sprint = Input.GetAxis(sprintKey);
+        float sprint = Input.GetAxis(playerConfig.sprintKey);
         
         if (stats.stamina > 0 )
         {
@@ -94,8 +76,8 @@ public class PlayerController : MonoBehaviour
             speed = defaultSpeed;
         }
 
-        float moveHorizontal = Input.GetAxis(horizontal);
-        float moveVertical = Input.GetAxis(vertical);
+        float moveHorizontal = Input.GetAxis(playerConfig.horizontalL);
+        float moveVertical = Input.GetAxis(playerConfig.verticalL);
 
         bool movingHorizontal = moveHorizontal >= 0.3 || moveHorizontal <= -0.3;
         bool movingVertical = moveVertical >= 0.3 || moveVertical <= -0.3;

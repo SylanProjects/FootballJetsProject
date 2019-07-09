@@ -7,10 +7,11 @@ public class BallController : MonoBehaviour
 {
     public PlayerController player1;
     public PlayerController player2; 
-    public int score1;
-    public int score2;
+    
     public Text scoreText;
-    public Rigidbody2D rb; 
+    public Rigidbody2D rb;
+    public Stats player1Stats;
+    public Stats player2Stats;
     
 
     private Rigidbody2D rb2d;
@@ -20,9 +21,7 @@ public class BallController : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        SetScoreText();
-        score1 = 0;
-        score2 = 0;
+        
     }
 
     // Update is called once per frame
@@ -34,27 +33,28 @@ public class BallController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("LeftGoal"))
         {
-            score1 += 1;
-            SetScoreText();
+
+            player2Stats.AddGoal(1);
             SetPlayerPositions();
+            
         }
         if (other.gameObject.CompareTag("RightGoal"))
         {
-            score2 += 1;
-            SetScoreText();
+            
+            player1Stats.AddGoal(1);
             SetPlayerPositions();
+           
+
         }
     }
-    void SetScoreText()
-    {
-        scoreText.text = score2 + " : " + score1;
-    }
+    
     void SetPlayerPositions()
     {
-        player1.ResetPosition();
-        player2.ResetPosition();
+        
         this.transform.position = new Vector2(0, 0);
         rb2d.velocity = new Vector2(0, 0);
+        player1.ResetPosition();
+        player2.ResetPosition();
     }
 
     public void Bounce()

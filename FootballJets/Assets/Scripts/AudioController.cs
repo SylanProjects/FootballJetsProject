@@ -9,6 +9,7 @@ public class AudioController : MonoBehaviour
     public AudioClip wallHitSfx;
     public AudioClip goalScore;
     public SoundPlayer soundPlayer;
+ 
     // Start is called before the first frame update
     
 
@@ -24,6 +25,7 @@ public class AudioController : MonoBehaviour
         {
 
             soundPlayer.PlaySound(soundSource, goalScore);
+
             
         }
        

@@ -7,6 +7,7 @@ public class Stats : MonoBehaviour
     public float health;
     public float stamina;
     public float shield;
+    public int score;
     public PlayerController player;
 
     
@@ -15,11 +16,13 @@ public class Stats : MonoBehaviour
         health = 100f;
         stamina = 100f;
         shield = 0;
+        score = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         if (shield == 100)
         {
             shield = 100;
@@ -27,7 +30,7 @@ public class Stats : MonoBehaviour
         else if(shield < 100)
         {
             shield += 1;
-        }
+        }*/
         ReplenishHealth();
 
     }
@@ -47,5 +50,13 @@ public class Stats : MonoBehaviour
         {
             health += 0.01f;
         }
+    }
+    public void AddGoal(int points)
+    {
+        score += points;
+    }
+    public int GetScore()
+    {
+        return score;
     }
 }

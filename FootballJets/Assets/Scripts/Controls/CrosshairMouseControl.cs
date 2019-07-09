@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class CrosshairMouseControl : MonoBehaviour
 {
     // Start is called before the first frame update
-    public string horizontal;
-    public string vertical;
+    
     public float speed = 5f;
     public float deadZone;
     public Text debug;
+    public PlayerConfig playerConfig;
 
 
     private float h;
@@ -26,8 +26,8 @@ public class CrosshairMouseControl : MonoBehaviour
         //Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        float moveHorizontal = Input.GetAxisRaw(horizontal);
-        float moveVertical = Input.GetAxisRaw(vertical);
+        float moveHorizontal = Input.GetAxisRaw(playerConfig.horizontalR);
+        float moveVertical = Input.GetAxisRaw(playerConfig.verticalR);
         
         debug.text = moveHorizontal + ", " + moveVertical;
         

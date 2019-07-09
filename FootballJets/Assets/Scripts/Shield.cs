@@ -5,8 +5,8 @@ using UnityEngine;
 public class Shield : MonoBehaviour
 {
     public Transform shield;
-    public string shieldKey;
-    public Stats stats; 
+    public Stats stats;
+    public PlayerConfig playerConfig;
     void Start()
     {
         
@@ -29,7 +29,8 @@ public class Shield : MonoBehaviour
             shield.transform.gameObject.SetActive(false);
             
         }
-        if (Input.GetAxis(shieldKey) > 0.3)
+        //if (Input.GetAxis(shieldKey) > 0.3)
+        if (Input.GetButtonDown(playerConfig.shieldKey))
         {
             if(stats.shield == 0)
             {

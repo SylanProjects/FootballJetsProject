@@ -6,17 +6,19 @@ public class Weapon : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefab;
-    public string shootKey;
+    
     public AudioSource soundSource;
     public AudioClip shootSFX;
     public SoundPlayer soundPlayer;
     public Stats stats;
+    public PlayerConfig playerConfig;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown(shootKey))
+        if (Input.GetButtonDown(playerConfig.shootKey))
         {
+            
             if (stats.shield < 1)
             {
                 Shoot();
