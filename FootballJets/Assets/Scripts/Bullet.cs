@@ -24,14 +24,21 @@ public class Bullet : MonoBehaviour
         Debug.Log(collision.name);
         if(collision.gameObject.CompareTag("Ball"))
         {
+            Bounce(collision);
             
-            collision.attachedRigidbody.AddForce(rb.velocity);
         }
         if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Player2"))
         {
             collision.gameObject.GetComponent<PlayerController>().GetHit(20); ;
         }
         Destroy(gameObject);
+    }
+    void Bounce(Collider2D collision)
+    {
+        float x = rb.velocity.x * 0.35f;
+        float y = rb.velocity.y * 0.35f;
+        Vector2 force = new Vector2(x, y);
+        collision.attachedRigidbody.AddForce(force);
     }
 
 

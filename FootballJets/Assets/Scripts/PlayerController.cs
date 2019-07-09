@@ -17,9 +17,10 @@ public class PlayerController : MonoBehaviour
     public Text StaminaText;
     public Text HealthText;
     public float deadZone;
+    public Stats stats;
 
-    private float health;
-    private int stamina;
+    //private float health;
+    //private int stamina;
     private Rigidbody2D rb2d;
     private PlayerController sprint;
 
@@ -27,8 +28,8 @@ public class PlayerController : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D> ();
         defaultSpeed = speed;
-        stamina = 100;
-        health = 100f;
+       // stamina = 100;
+       // health = 100f;
         
     }
     
@@ -55,11 +56,10 @@ public class PlayerController : MonoBehaviour
         rb2d.AddForce(movement * speed);
         Sprint();
 
-        HealthText.text = "Health: " + health;
-        StaminaText.text = "Stamina: " + stamina;
+        
         
         //keys.text = speed + ", ";
-        ReplenishHealth();
+        //ReplenishHealth();
 
 
     }
@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
         // Get a key input 
         float sprint = Input.GetAxis(sprintKey);
         
-        if (stamina > 0 )
+        if (stats.stamina > 0 )
         {
             speed = defaultSpeed + (defaultSpeed * (sprintPower * (int)sprint) * -1);
         }
@@ -97,47 +97,34 @@ public class PlayerController : MonoBehaviour
         float moveHorizontal = Input.GetAxis(horizontal);
         float moveVertical = Input.GetAxis(vertical);
 
-        if (sprint < 0 & (moveHorizontal >= 0.3 || moveVertical >= 0.3))
+        bool movingHorizontal = moveHorizontal >= 0.3 || moveHorizontal <= -0.3;
+        bool movingVertical = moveVertical >= 0.3 || moveVertical <= -0.3;
+
+        if (sprint < 0 & (movingHorizontal || movingVertical))
         {
-            stamina -= 2;
+            stats.stamina -= 2;
         }
 
-        if (stamina >= 100)
+        if (stats.stamina >= 100)
         {
-            stamina = 100;
+            stats.stamina = 100;
         }
         else if(!(sprint > 0))
         {
-            stamina += 1;
+            stats.stamina += 1;
         }
-        if (stamina < 0)
+        if (stats.stamina < 0)
         {
-            stamina = 0;
+            stats.stamina = 0;
         }
         
     }
     public void GetHit(float power)
     {
-        health -= power;
+        stats.health -= power;
     }
 
-    public void ReplenishHealth()
-    {
-        if(health >= 100f)
-        {
-            health = 100f;
-        }
-        else if(health < 0f)
-        {
-            ResetPosition();
-            health = 100f;
-            
-        }
-        else
-        {
-            health += 0.01f;
-        }
-    }
+    
    
     
 }

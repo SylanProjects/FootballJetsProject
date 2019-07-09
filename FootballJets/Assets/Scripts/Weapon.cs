@@ -10,13 +10,18 @@ public class Weapon : MonoBehaviour
     public AudioSource soundSource;
     public AudioClip shootSFX;
     public SoundPlayer soundPlayer;
+    public Stats stats;
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown(shootKey))
         {
-            Shoot();
+            if (stats.shield < 1)
+            {
+                Shoot();
+            }
+            
         }
     }
     void Shoot()
