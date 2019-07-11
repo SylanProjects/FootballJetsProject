@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 20f;
     public Rigidbody2D rb;
+    public float strength;
     
 
     // Start is called before the first frame update
@@ -25,18 +26,25 @@ public class Bullet : MonoBehaviour
         if(collision.gameObject.CompareTag("Ball"))
         {
             Bounce(collision);
-            
+            Destroy(gameObject);
+
         }
         if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Player2"))
         {
-            collision.gameObject.GetComponent<PlayerController>().GetHit(20); ;
+            collision.gameObject.GetComponent<PlayerController>().GetHit(strength);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
+
+        
     }
     void Bounce(Collider2D collision)
     {
-        float x = rb.velocity.x * 0.35f;
-        float y = rb.velocity.y * 0.35f;
+        float x = rb.velocity.x * (strength / 100);
+        float y = rb.velocity.y * (strength / 100);
         Vector2 force = new Vector2(x, y);
         collision.attachedRigidbody.AddForce(force);
     }

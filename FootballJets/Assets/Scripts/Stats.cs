@@ -9,7 +9,8 @@ public class Stats : MonoBehaviour
     public float shield;
     public int score;
     public PlayerController player;
-
+    public Weapon weapon;
+    
     
     private void Start()
     {
@@ -17,20 +18,17 @@ public class Stats : MonoBehaviour
         stamina = 100f;
         shield = 0;
         score = 0;
+        weapon.weaponList.pistol.AddAmmo(999);
+        weapon.weaponList.machineGun.AddAmmo(600);
+        
+
     }
 
-    // Update is called once per frame
+
+   
     void Update()
     {
-        /*
-        if (shield == 100)
-        {
-            shield = 100;
-        }
-        else if(shield < 100)
-        {
-            shield += 1;
-        }*/
+        
         ReplenishHealth();
 
     }
@@ -55,8 +53,19 @@ public class Stats : MonoBehaviour
     {
         score += points;
     }
+
+    public void AddHealth(int amount)
+    {
+        
+        this.health += amount;
+        if (this.health > 100)
+        {
+            this.health = 100;
+        }
+    }
     public int GetScore()
     {
         return score;
     }
+    
 }

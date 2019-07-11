@@ -9,13 +9,13 @@ public class StatsUI : MonoBehaviour
     public Text healthText;
     public Text staminaText;
     public Text shieldText;
+    public Text ammoText;
     
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -23,6 +23,10 @@ public class StatsUI : MonoBehaviour
         staminaText.text = "Stamina: " + stats.stamina;
         float shield = 100 - stats.shield;
         shieldText.text = "Shield: " + shield;
+        ammoText.text = stats.weapon.GetCurrentGun().ToString();
+        
+        
+        
         
 
     }

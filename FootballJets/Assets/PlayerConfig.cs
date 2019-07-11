@@ -11,7 +11,10 @@ public class PlayerConfig : MonoBehaviour
     public string shootKey = "Fire1";
     public string shieldKey = "Shield1";
     public string sprintKey = "Sprint";
+    public string changeGunKey = "Change1";
+
     public float defaultXPos = -20;
     public float defaultYPos = 0;
+
 
 }
