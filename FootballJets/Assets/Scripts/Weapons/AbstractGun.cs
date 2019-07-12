@@ -11,6 +11,7 @@ public abstract class AbstractGun : MonoBehaviour, IGun
     public float delayTime;
     public float reloadDelayTime;
     public int magazineSize;
+    public CrosshairMouseControl body;
 
     private bool reloading;
     private int ammo;
@@ -25,6 +26,8 @@ public abstract class AbstractGun : MonoBehaviour, IGun
     }
     void Update()
     {
+        body.Push();
+        
         if(!readyToShoot)
         {
             Delay();
@@ -40,14 +43,7 @@ public abstract class AbstractGun : MonoBehaviour, IGun
     }
 
 
-    public void AddAmmo(int amount)
-    {
-        this.ammo += amount;
-    }
-    public int GetAmmo()
-    {
-        return this.ammo;
-    }
+    
    
 
     public void Reload()
@@ -56,6 +52,7 @@ public abstract class AbstractGun : MonoBehaviour, IGun
          * Player can reload a gun before the amount of bullets in the magazine (availableAmmo)
          * reaches 0, therefore the first part takes care of that. 
          */
+
         DelayFor(reloadDelayTime);
         reloading = true;
         if (ammo > magazineSize)
@@ -84,6 +81,9 @@ public abstract class AbstractGun : MonoBehaviour, IGun
          */
         if (availableAmmo > 0 && readyToShoot)
         {
+            
+            body.Pullback(0.5f);
+
             weapon.soundPlayer.PlaySound(weapon.soundSource, shootSFX);
             weapon.shooter.Fire(bulletPrefab, weapon.firePoint);
             availableAmmo -= 1;
@@ -113,6 +113,7 @@ public abstract class AbstractGun : MonoBehaviour, IGun
 
     }
     
+    
     public void DelayFor(float time)
     {
         readyToShoot = false;
@@ -128,11 +129,22 @@ public abstract class AbstractGun : MonoBehaviour, IGun
     {
         return this.readyToShoot;
     }
+    public void AddAmmo(int amount)
+    {
+        this.ammo += amount;
+    }
+    public int GetAmmo()
+    {
+        return this.ammo;
+    }
     public string GetGunName()
     {
         return this.gunName;
     }
-    
+    public string GetAmmoString()
+    {
+        return this.availableAmmo + " / " + this.ammo;
+    }
     public override string ToString()
     {
         if(reloading)

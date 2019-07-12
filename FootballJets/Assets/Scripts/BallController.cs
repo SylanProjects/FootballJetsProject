@@ -14,6 +14,7 @@ public class BallController : MonoBehaviour
     public Stats player2Stats;
     
 
+
     private Rigidbody2D rb2d;
    
     // Start is called before the first frame update

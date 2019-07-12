@@ -4,38 +4,36 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
+    public PlayerController player;
     public Transform shield;
-    public Stats stats;
-    public PlayerConfig playerConfig;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+   
+   
+    
+    
     void Update()
     {
         
-        if (stats.shield > 0)
+        if (player.stats.GetShieldStatus() > 0)
         {
             shield.transform.gameObject.SetActive(true);
-            stats.shield -= 4;
-            float size = (stats.shield / 100) * 4f;
+            player.stats.AddShield(-4);
+            float size = (player.stats.GetShieldStatus() / 100) * 4f;
             shield.transform.localScale = new Vector2(0.25f, size);
         }
-        if (stats.shield < 1)
+        if (player.stats.GetShieldStatus() < 1)
         {
-            stats.shield = 0;
+            player.stats.SetShield(0);
             shield.transform.gameObject.SetActive(false);
-            
+            player.busyState.SetState(false);
         }
-        //if (Input.GetAxis(shieldKey) > 0.3)
-        if (Input.GetButtonDown(playerConfig.shieldKey))
+        
+        if (Input.GetButtonDown(player.playerConfig.shieldKey))
         {
-            if(stats.shield == 0)
+            if(player.stats.GetShieldStatus() == 0 && !player.busyState.GetState())
             {
-                stats.shield = 100;
-                //shield.transform.localPosition = new Vector2(5.6f, 0);
+                player.busyState.SetState(true);
+                player.stats.SetShield(100);
+                
             }
             
         }

@@ -6,23 +6,29 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public PlayerConfig playerConfig;
-    public float speed;
-    public float defaultSpeed;
-    public float sprintPower;
+    
+    public GlobalSettings globalSettings;
     public Text keys;
     
     
     public float deadZone;
     public Stats stats;
+    public BusyState busyState;
+    public CrosshairMouseControl body;
 
+    private float defaultSpeed;
     private Rigidbody2D rb2d;
     private PlayerController sprint;
+
+    
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D> ();
-        defaultSpeed = speed;
-    
+        defaultSpeed = globalSettings.speed;
+
+        
+
     }
     
     void FixedUpdate() {
@@ -42,10 +48,14 @@ public class PlayerController : MonoBehaviour
 
         Vector2 movement = new Vector2(h, v);
 
-        rb2d.AddForce(movement * speed);
+        rb2d.AddForce(movement * globalSettings.speed);
         Sprint();
 
+        
+
+
     }
+    
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -68,12 +78,12 @@ public class PlayerController : MonoBehaviour
         // Get a key input 
         float sprint = Input.GetAxis(playerConfig.sprintKey);
         
-        if (stats.stamina > 0 )
+        if (stats.GetStaminaStatus() > 0 )
         {
-            speed = defaultSpeed + (defaultSpeed * (sprintPower * (int)sprint) * -1);
+            globalSettings.speed = defaultSpeed + (defaultSpeed * (globalSettings.sprintPower * (int)sprint) * -1);
         }
         else {
-            speed = defaultSpeed;
+            globalSettings.speed = defaultSpeed;
         }
 
         float moveHorizontal = Input.GetAxis(playerConfig.horizontalL);
@@ -84,26 +94,27 @@ public class PlayerController : MonoBehaviour
 
         if (sprint < 0 & (movingHorizontal || movingVertical))
         {
-            stats.stamina -= 2;
+            //stats.stamina -= 2;
+            stats.AddStamina(-2);
         }
 
-        if (stats.stamina >= 100)
+        if (stats.GetStaminaStatus() >= 100)
         {
-            stats.stamina = 100;
+            stats.SetStamina(100);
         }
         else if(!(sprint > 0))
         {
-            stats.stamina += 1;
+            stats.AddStamina(1);
         }
-        if (stats.stamina < 0)
+        if (stats.GetStaminaStatus() < 0)
         {
-            stats.stamina = 0;
+            stats.SetStamina(0);
         }
         
     }
     public void GetHit(float power)
     {
-        stats.health -= power;
+        stats.AddHealth(-power);
     }
 
     

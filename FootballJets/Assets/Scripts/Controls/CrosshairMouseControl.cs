@@ -22,41 +22,27 @@ public class CrosshairMouseControl : MonoBehaviour
     }
     private void Update()
     {
+        Push();
+    }
+    public void Push()
+    {
+        float x = this.transform.localPosition.x;
+        float y = this.transform.localPosition.y;
+        this.transform.localPosition = new Vector2(x + 0.1f, y);
+        x = this.transform.localScale.x;
 
-        //Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        float moveHorizontal = Input.GetAxisRaw(playerConfig.horizontalR);
-        float moveVertical = Input.GetAxisRaw(playerConfig.verticalR);
-        
-        debug.text = moveHorizontal + ", " + moveVertical;
-        
-        if ((moveHorizontal > deadZone || moveHorizontal < -deadZone) || (moveVertical > deadZone || moveVertical < -deadZone))
+        if (this.transform.localPosition.x >= 0)
         {
-            h = moveHorizontal;
-            v = moveVertical;
+            this.transform.localPosition = new Vector2(0, 0);
+
         }
-
-        // if (!(moveHorizontal < deadZone && moveHorizontal > -deadZone))
-        //  {
-        //    h = moveHorizontal;
-
-        // }
-        // if (!(moveVertical < deadZone && moveVertical > -deadZone))
-        // {
-        //    v = moveVertical;
-        // }
-
-
-
-
-        float angle = Mathf.Atan2(v, h) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speed * Time.deltaTime);
+    }
+    public void Pullback(float force)
+    {
+        float x = this.transform.localPosition.x;
+        float y = this.transform.localPosition.y;
+        this.transform.localPosition = new Vector2(-force, y);
         
-
-       // Vector3 lookDirection = new Vector2(Input.GetAxisRaw(horizontal), Input.GetAxisRaw(vertical));
-        //transform.rotation = Quaternion.LookRotation(lookDirection);
-
     }
 }

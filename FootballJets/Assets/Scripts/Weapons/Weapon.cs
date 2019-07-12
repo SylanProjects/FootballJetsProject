@@ -21,28 +21,29 @@ public class Weapon : MonoBehaviour
     }
     void Update()
     {
-        //if (Input.GetButtonDown(playerConfig.shootKey))
         if (Input.GetAxis(playerConfig.shootKey) > 0.1)
         {
             
-            if (stats.shield < 1)
+            if (stats.GetShieldStatus() < 1)
             {
                 currentGun.Shoot();
-                
-
             }
-            
         }
      
         if (Input.GetButtonDown(playerConfig.changeGunKey))
         {
             currentGun = weaponList.GetNextGun(currentGun);
-            currentGun.gameObject.SetActive(true);
+            ShowCurrentWeapon(true);
+
         }
     }
     public AbstractGun GetCurrentGun()
     {
         return this.currentGun;
+    }
+    public void ShowCurrentWeapon(bool b)
+    {
+        currentGun.gameObject.SetActive(b);
     }
     
 }

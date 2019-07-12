@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class Stats : MonoBehaviour
 {
-    public float health;
-    public float stamina;
-    public float shield;
+   
+    
     public int score;
     public PlayerController player;
     public Weapon weapon;
-    
-    
+
+    private float health;
+    private float stamina;
+    private float shield;
+
+
+
     private void Start()
     {
-        health = 100f;
-        stamina = 100f;
+        health = player.globalSettings.health;
+        stamina = player.globalSettings.stamina;
         shield = 0;
         score = 0;
-        weapon.weaponList.pistol.AddAmmo(999);
-        weapon.weaponList.machineGun.AddAmmo(600);
+        weapon.weaponList.pistol.AddAmmo(player.globalSettings.pistolAmmo);
+        weapon.weaponList.machineGun.AddAmmo(player.globalSettings.machineGunAmmo);
         
 
     }
@@ -54,7 +58,7 @@ public class Stats : MonoBehaviour
         score += points;
     }
 
-    public void AddHealth(int amount)
+    public void AddHealth(float amount)
     {
         
         this.health += amount;
@@ -67,5 +71,32 @@ public class Stats : MonoBehaviour
     {
         return score;
     }
-    
+    public float GetShieldStatus()
+    {
+        return this.shield;
+    }
+    public void AddShield(float amount)
+    {
+        this.shield += amount;
+    }
+    public void SetShield(float amount)
+    {
+        this.shield = amount;
+    }
+    public float GetHealthStatus()
+    {
+        return this.health;
+    }  
+    public float GetStaminaStatus()
+    {
+        return this.stamina;
+    }
+    public void AddStamina(float amount)
+    {
+        this.stamina += amount;
+    }
+    public void SetStamina(float amount)
+    {
+        this.stamina = amount;
+    }
 }
