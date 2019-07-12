@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public BusyState busyState;
     public CrosshairMouseControl body;
 
+    private float speed;
     private float defaultSpeed;
     private Rigidbody2D rb2d;
     private PlayerController sprint;
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D> ();
         defaultSpeed = globalSettings.speed;
-
+        speed = globalSettings.speed;
         
 
     }
@@ -48,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
         Vector2 movement = new Vector2(h, v);
 
-        rb2d.AddForce(movement * globalSettings.speed);
+        rb2d.AddForce(movement * speed);
         Sprint();
 
         
@@ -80,10 +81,10 @@ public class PlayerController : MonoBehaviour
         
         if (stats.GetStaminaStatus() > 0 )
         {
-            globalSettings.speed = defaultSpeed + (defaultSpeed * (globalSettings.sprintPower * (int)sprint) * -1);
+            speed = defaultSpeed + (defaultSpeed * (globalSettings.sprintPower * (int)sprint) * -1);
         }
         else {
-            globalSettings.speed = defaultSpeed;
+            speed = defaultSpeed;
         }
 
         float moveHorizontal = Input.GetAxis(playerConfig.horizontalL);

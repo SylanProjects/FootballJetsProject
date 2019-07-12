@@ -28,7 +28,10 @@ public class BallController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButton("Reset"))
+        {
+            SetPlayerPositions();
+        }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

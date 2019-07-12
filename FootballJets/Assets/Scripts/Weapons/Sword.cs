@@ -14,7 +14,8 @@ public class Sword : MonoBehaviour
 
     public PlayerRotator playerRotation;
     public Weapon weapon;
- 
+    public SwordSprite swordSprite;
+    
 
 
 
@@ -24,6 +25,7 @@ public class Sword : MonoBehaviour
     {
         //  rb.velocity = transform.right * speed;
         this.transform.localScale = new Vector2(0, 0);
+        swordSprite.gameObject.SetActive(false);
 
     }
     private void Update()
@@ -38,7 +40,9 @@ public class Sword : MonoBehaviour
         {
             if (!playerController.busyState.GetState())
             {
+                
                 weapon.ShowCurrentWeapon(false);
+                swordSprite.gameObject.SetActive(true);
                 playerController.body.Pullback(0.4f);
                 playerController.busyState.SetState(true);
                 Push();
@@ -63,13 +67,14 @@ public class Sword : MonoBehaviour
         float y = this.transform.localPosition.y;
         this.transform.localPosition = new Vector2(x + 0.6f, y);
         x = this.transform.localScale.x;
-        this.transform.localScale = new Vector2(x+1f, 0);
+        this.transform.localScale = new Vector2(x+2f, 0);
         if (this.transform.localPosition.x >= 3)
         {
             this.transform.localPosition = new Vector2(0, 0);
             this.transform.localScale = new Vector2(0, 0);
             playerController.busyState.SetState(false);
             weapon.ShowCurrentWeapon(true);
+            swordSprite.gameObject.SetActive(false);
 
         }
     }

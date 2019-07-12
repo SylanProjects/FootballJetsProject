@@ -10,7 +10,7 @@ public class PlayerConfig : MonoBehaviour
     public string verticalR = "RStickVertical";
     public string shootKey = "Fire1";
     public string shieldKey = "Shield1";
-    public string sprintKey = "Sprint";
+    public string sprintKey = "Sprint1";
     public string changeGunKey = "Change1";
     public string swordKey = "Sword1";
 

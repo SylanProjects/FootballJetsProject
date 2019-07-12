@@ -15,4 +15,5 @@ public class GlobalSettings : MonoBehaviour
     public int pistolAmmo;
     public int machineGunAmmo;
     public float rotateSpeed;
+    public float swordHitSize;
 }
