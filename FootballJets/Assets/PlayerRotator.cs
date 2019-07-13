@@ -20,8 +20,10 @@ public class PlayerRotator : MonoBehaviour
     }
     private void Rotate()
     {
-        float moveHorizontal = Input.GetAxisRaw(playerController.playerConfig.horizontalR);
-        float moveVertical = Input.GetAxisRaw(playerController.playerConfig.verticalR);
+        //float moveHorizontal = Input.GetAxisRaw(playerController.playerConfig.horizontalR);
+        //float moveVertical = Input.GetAxisRaw(playerController.playerConfig.verticalR);
+        float moveHorizontal = Input.GetAxisRaw(playerController.playerConfig.horizontalL);
+        float moveVertical = Input.GetAxisRaw(playerController.playerConfig.verticalL);
 
         if ((moveHorizontal > playerController.deadZone || moveHorizontal < -playerController.deadZone) || (moveVertical > playerController.deadZone || moveVertical < -playerController.deadZone))
         {
