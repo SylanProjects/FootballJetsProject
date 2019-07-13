@@ -65,6 +65,7 @@
     <Compile Include="Assets\_Completed-Assets\Scripts\CompletePlayerController.cs" />
     <Compile Include="Assets\_Completed-Assets\Scripts\CompleteRotator.cs" />
     <Compile Include="Assets\Animate.cs" />
+    <Compile Include="Assets\Exit.cs" />
     <Compile Include="Assets\PickupController.cs" />
     <Compile Include="Assets\PlayerConfig.cs" />
     <Compile Include="Assets\PlayerRotator.cs" />
@@ -116,23 +117,29 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
+    <Reference Include="Unity.2D.Animation.Runtime">
+      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.IK.Editor">
+      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.2D.IK.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.IK.Runtime">
+      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.2D.IK.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="PsdPlugin">
+      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
       <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Animation.Runtime">
-      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
+    <Reference Include="Unity.2D.Psdimporter.Editor">
+      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEngineBridge.001">
       <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
@@ -146,23 +153,17 @@
     <Reference Include="Unity.2D.Triangle.Runtime">
       <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.2D.Triangle.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Common.Editor">
       <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Analytics.DataPrivacy">
+      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
       <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.IK.Editor">
-      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.2D.IK.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.IK.Runtime">
-      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.2D.IK.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="PsdPlugin">
-      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Psdimporter.Editor">
-      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>F:/Program Files (x86)/Unity hub/2018.3.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

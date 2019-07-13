@@ -62,23 +62,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\TutorialInfo\Scripts\Editor\TutorialInfoEditor.cs" />
+    <Reference Include="Unity.2D.Animation.Runtime">
+      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.IK.Editor">
+      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.2D.IK.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.IK.Runtime">
+      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.2D.IK.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="PsdPlugin">
+      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
       <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Animation.Runtime">
-      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
+    <Reference Include="Unity.2D.Psdimporter.Editor">
+      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEngineBridge.001">
       <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
@@ -92,23 +98,17 @@
     <Reference Include="Unity.2D.Triangle.Runtime">
       <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.2D.Triangle.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Common.Editor">
       <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Analytics.DataPrivacy">
+      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
       <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.IK.Editor">
-      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.2D.IK.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.IK.Runtime">
-      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.2D.IK.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="PsdPlugin">
-      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Psdimporter.Editor">
-      <HintPath>F:/Unity/FootballJets/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>F:/Program Files (x86)/Unity hub/2018.3.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -347,6 +347,9 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="NSubstitute">
+      <HintPath>F:/Unity/FootballJets/Library/PackageCache/com.unity.2d.common@1.0.11-preview.1/Tests/Editor/Lib/NSubstitute/NSubstitute.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>F:/Unity/FootballJets/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
     </Reference>
@@ -361,9 +364,6 @@
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>F:/Unity/FootballJets/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
-    </Reference>
-    <Reference Include="NSubstitute">
-      <HintPath>F:/Unity/FootballJets/Library/PackageCache/com.unity.2d.common@1.0.11-preview.1/Tests/Editor/Lib/NSubstitute/NSubstitute.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>F:/Program Files (x86)/Unity hub/2018.3.11f1/Editor/Data/MonoBleedingEdge/lib/mono/2.0-api/mscorlib.dll</HintPath>
