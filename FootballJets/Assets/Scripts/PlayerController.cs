@@ -115,6 +115,14 @@ public class PlayerController : MonoBehaviour
     }
     public void GetHit(float power)
     {
+        /*
+         * To add randomness to the game and make it less predictable,
+         * the power with which the player will be hit will be multiplied by a random 
+         * number. 
+         * The initial power with which the player is hit is dependant
+         * on the item that hits it, e.g. a bullet or a sword.
+         */
+        power *= Random.Range(0.3f, 1.5f);
         stats.AddHealth(-power);
     }
 

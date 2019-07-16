@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
-        currentGun = weaponList.GetDefaultWeapon();
+        currentGun = weaponList.pistol;//GetDefaultWeapon();
     }
     void Update()
     {

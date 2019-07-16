@@ -7,9 +7,7 @@ public class Sword : MonoBehaviour
 {
     public PlayerController playerController;
     public Transform player;
-    public float speed = 20f;
     
-    public float strength;
     public Rigidbody2D ballRB2D;
 
     public PlayerRotator playerRotation;
@@ -56,7 +54,7 @@ public class Sword : MonoBehaviour
     private void Push()
     {
         /*
-         * This function creates an invisible and pushes it in front of the player, 
+         * This function creates an invisible collider and pushes it in front of the player, 
          * this "push" is needed to create velocity so when it collides with the ball
          * it will push it back. The force (bounciness) with which it pushes the ball can be configured in the 
          * 'Physics' folder, in the file 'Sword'. 
@@ -83,13 +81,18 @@ public class Sword : MonoBehaviour
         
         if (collision.gameObject.CompareTag("Ball"))
         {
-            Bounce(collision);
+            Bounce(collision, playerController.globalSettings.swordStrength);
 
+        }
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Bounce(collision, 200);
+            collision.gameObject.GetComponent<PlayerController>().GetHit(5);
         }
 
 
     }
-    void Bounce(Collider2D collision)
+    void Bounce(Collider2D collision, float strength)
     {
 
         Vector2 rotation = playerRotation.GetRotation().GetVector();

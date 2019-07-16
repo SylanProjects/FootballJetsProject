@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoordinatePair : MonoBehaviour
+public class CoordinatePair
 {
     private float x;
     private float y;

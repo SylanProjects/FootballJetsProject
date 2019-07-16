@@ -67,6 +67,7 @@
     <Compile Include="Assets\Animate.cs" />
     <Compile Include="Assets\Exit.cs" />
     <Compile Include="Assets\PickupController.cs" />
+    <Compile Include="Assets\PickupSpawnController.cs" />
     <Compile Include="Assets\PlayerConfig.cs" />
     <Compile Include="Assets\PlayerRotator.cs" />
     <Compile Include="Assets\ScoreUIController.cs" />
