@@ -12,7 +12,9 @@ public class PlayerConfig : MonoBehaviour
     public string shieldKey = "Shield1";
     public string sprintKey = "Sprint1";
     public string changeGunKey = "Change1";
+    public string reloadGunKey = "Reload1";
     public string swordKey = "Sword1";
+    
 
     public float defaultXPos = -20;
     public float defaultYPos = 0;

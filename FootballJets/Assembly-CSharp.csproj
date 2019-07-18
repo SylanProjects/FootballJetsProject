@@ -65,9 +65,17 @@
     <Compile Include="Assets\_Completed-Assets\Scripts\CompletePlayerController.cs" />
     <Compile Include="Assets\_Completed-Assets\Scripts\CompleteRotator.cs" />
     <Compile Include="Assets\Animate.cs" />
+    <Compile Include="Assets\Controls.cs" />
     <Compile Include="Assets\Exit.cs" />
+    <Compile Include="Assets\GlobalTimer.cs" />
+    <Compile Include="Assets\PickupActivator.cs" />
+    <Compile Include="Assets\PickupControl.cs" />
     <Compile Include="Assets\PickupController.cs" />
+    <Compile Include="Assets\PickupList.cs" />
+    <Compile Include="Assets\PickupPrefabs.cs" />
+    <Compile Include="Assets\PickupSpawn.cs" />
     <Compile Include="Assets\PickupSpawnController.cs" />
+    <Compile Include="Assets\PickupTimer.cs" />
     <Compile Include="Assets\PlayerConfig.cs" />
     <Compile Include="Assets\PlayerRotator.cs" />
     <Compile Include="Assets\ScoreUIController.cs" />
@@ -81,6 +89,9 @@
     <Compile Include="Assets\Scripts\HelperObjects\BusyState.cs" />
     <Compile Include="Assets\Scripts\HelperObjects\CoordinatePair.cs" />
     <Compile Include="Assets\Scripts\Menu\SceneSwitcher.cs" />
+    <Compile Include="Assets\Scripts\Pickups\HealthPickup.cs" />
+    <Compile Include="Assets\Scripts\Pickups\IPickupEffect.cs" />
+    <Compile Include="Assets\Scripts\Pickups\StaminaPickup.cs" />
     <Compile Include="Assets\Scripts\Player2Controller.cs" />
     <Compile Include="Assets\Scripts\PlayerAudioController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />

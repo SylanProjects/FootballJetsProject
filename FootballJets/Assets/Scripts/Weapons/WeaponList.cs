@@ -8,7 +8,7 @@ public class WeaponList : MonoBehaviour
     public AbstractGun pistol;
     public AbstractGun machineGun;
 
-    private void Start()
+    public void Start()
     {
         guns = new List<AbstractGun>
         {
@@ -29,11 +29,24 @@ public class WeaponList : MonoBehaviour
     }
     public AbstractGun GetDefaultWeapon()
     {
+        if(guns == null)
+        {
+            Start();
+        }
         return guns[0];
     }
     public List<AbstractGun> GetGuns()
     {
         return this.guns;
+    }
+    public void AddAmmo(string gunName, int amount)
+    {
+        foreach(AbstractGun gun in guns) {
+            if(gun.GetGunName() == gunName)
+            {
+                gun.AddAmmo(amount);
+            }
+        }
     }
 
 }

@@ -5,30 +5,26 @@ using UnityEngine;
 public class PlayerRotator : MonoBehaviour
 {
     public PlayerController playerController;
+    
     private float h;
     private float v;
     void Start()
     {
         h = 0;
         v = 0;
+        
     }
 
     // Update is called once per frame
-    void Update()
+    
+    public void Rotate(float lookHorizontal, float lookVertical)
     {
-        Rotate();
-    }
-    private void Rotate()
-    {
-        float moveHorizontal = Input.GetAxisRaw(playerController.playerConfig.horizontalR);
-        float moveVertical = Input.GetAxisRaw(playerController.playerConfig.verticalR);
-        //float moveHorizontal = Input.GetAxisRaw(playerController.playerConfig.horizontalL);
-        //float moveVertical = Input.GetAxisRaw(playerController.playerConfig.verticalL);
+        
 
-        if ((moveHorizontal > playerController.deadZone || moveHorizontal < -playerController.deadZone) || (moveVertical > playerController.deadZone || moveVertical < -playerController.deadZone))
+        if ((lookHorizontal > playerController.deadZone || lookHorizontal < -playerController.deadZone) || (lookVertical > playerController.deadZone || lookVertical < -playerController.deadZone))
         {
-            h = moveHorizontal;
-            v = moveVertical;
+            h = lookHorizontal;
+            v = lookVertical;
         }
 
         float angle = Mathf.Atan2(v, h) * Mathf.Rad2Deg;

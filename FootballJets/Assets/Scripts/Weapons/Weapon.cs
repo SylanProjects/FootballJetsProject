@@ -15,27 +15,23 @@ public class Weapon : MonoBehaviour
     private AbstractGun currentGun;
     
 
-    private void Start()
+    public void Start()
     {
-        currentGun = weaponList.pistol;//GetDefaultWeapon();
-    }
-    void Update()
-    {
-        if (Input.GetAxis(playerConfig.shootKey) > 0.1)
-        {
-            
-            if (stats.GetShieldStatus() < 1)
-            {
-                currentGun.Shoot();
-            }
-        }
-     
-        if (Input.GetButtonDown(playerConfig.changeGunKey))
-        {
-            currentGun = weaponList.GetNextGun(currentGun);
-            ShowCurrentWeapon(true);
 
+        currentGun = weaponList.GetDefaultWeapon();
+    }
+    
+    public void Shoot()
+    {
+        if (stats.GetShieldStatus() < 1)
+        {
+            currentGun.Shoot();
         }
+    }
+    public void ChangeGun()
+    {
+        currentGun = weaponList.GetNextGun(currentGun);
+        ShowCurrentWeapon(true);
     }
     public AbstractGun GetCurrentGun()
     {
@@ -44,6 +40,10 @@ public class Weapon : MonoBehaviour
     public void ShowCurrentWeapon(bool b)
     {
         currentGun.gameObject.SetActive(b);
+    }
+    public void Reload()
+    {
+        currentGun.Reload();
     }
     
 }

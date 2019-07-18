@@ -16,21 +16,24 @@ public class Stats : MonoBehaviour
 
 
 
-    private void Start()
+    public void Start()
     {
         health = player.globalSettings.health;
         stamina = player.globalSettings.stamina;
         shield = 0;
         score = 0;
-        weapon.weaponList.pistol.AddAmmo(player.globalSettings.pistolAmmo);
-        weapon.weaponList.machineGun.AddAmmo(player.globalSettings.machineGunAmmo);
+        weapon.weaponList.Start();
+        weapon.weaponList.AddAmmo("Pistol", player.globalSettings.pistolAmmo);
+        weapon.weaponList.AddAmmo("MachineGun", player.globalSettings.machineGunAmmo);
+        //weapon.weaponList.pistol.AddAmmo(player.globalSettings.pistolAmmo);
+        //weapon.weaponList.machineGun.AddAmmo(player.globalSettings.machineGunAmmo);
         
 
     }
 
-
+    
    
-    void Update()
+    public void Update()
     {
         
         ReplenishHealth();

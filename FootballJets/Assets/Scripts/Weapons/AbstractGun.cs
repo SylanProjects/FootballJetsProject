@@ -24,7 +24,7 @@ public abstract class AbstractGun : MonoBehaviour, IGun
     {
         InitializeGun();
     }
-    void Update()
+    public void Update()
     {
         body.Push();
         
@@ -52,23 +52,30 @@ public abstract class AbstractGun : MonoBehaviour, IGun
          * Player can reload a gun before the amount of bullets in the magazine (availableAmmo)
          * reaches 0, therefore the first part takes care of that. 
          */
-
-        DelayFor(reloadDelayTime);
-        reloading = true;
-        if (ammo > magazineSize)
+        if (availableAmmo == magazineSize)
         {
-            int aAmmo = availableAmmo; // Ammo already in the magazine
-            availableAmmo += magazineSize - aAmmo;
-            ammo -= magazineSize - aAmmo;
             
         }
-        
-        else if(ammo > 0 && ammo < magazineSize)
+        else
         {
-            int aAmmo = availableAmmo;
-            availableAmmo += ammo - aAmmo;
-            ammo = aAmmo;
+            DelayFor(reloadDelayTime);
+            reloading = true;
+            if (ammo > magazineSize)
+            {
+                int aAmmo = availableAmmo; // Ammo already in the magazine
+                availableAmmo += magazineSize - aAmmo;
+                ammo -= magazineSize - aAmmo;
+
+            }
+
+            else if (ammo > 0 && ammo < magazineSize)
+            {
+                int aAmmo = availableAmmo;
+                availableAmmo += ammo - aAmmo;
+                ammo = aAmmo;
+            }
         }
+        
         
     }
 

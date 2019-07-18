@@ -34,21 +34,21 @@ public class Sword : MonoBehaviour
         {
             Push();
         }
-        if (Input.GetButtonDown(playerController.playerConfig.swordKey))
-        {
-            if (!playerController.busyState.GetState())
-            {
-                
-                weapon.ShowCurrentWeapon(false);
-                swordSprite.gameObject.SetActive(true);
-                playerController.body.Pullback(0.4f);
-                playerController.busyState.SetState(true);
-                Push();
-                
-            }
-            
-        }
         
+        
+    }
+    public void UseSword()
+    {
+        if (!playerController.busyState.GetState())
+        {
+
+            weapon.ShowCurrentWeapon(false);
+            swordSprite.gameObject.SetActive(true);
+            playerController.body.Pullback(0.4f);
+            playerController.busyState.SetState(true);
+            Push();
+
+        }
     }
 
     private void Push()

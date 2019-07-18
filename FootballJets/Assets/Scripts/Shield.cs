@@ -7,10 +7,9 @@ public class Shield : MonoBehaviour
     public PlayerController player;
     public Transform shield;
    
-   
+
     
-    
-    void Update()
+    public void Update()
     {
         
         if (player.stats.GetShieldStatus() > 0)
@@ -27,15 +26,15 @@ public class Shield : MonoBehaviour
             player.busyState.SetState(false);
         }
         
-        if (Input.GetButtonDown(player.playerConfig.shieldKey))
+        
+    }
+    public void UseShield()
+    {
+        if (player.stats.GetShieldStatus() == 0 && !player.busyState.GetState())
         {
-            if(player.stats.GetShieldStatus() == 0 && !player.busyState.GetState())
-            {
-                player.busyState.SetState(true);
-                player.stats.SetShield(100);
-                
-            }
-            
+            player.busyState.SetState(true);
+            player.stats.SetShield(100);
+
         }
     }
 }
