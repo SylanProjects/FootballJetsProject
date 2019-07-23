@@ -58,6 +58,7 @@ public class AIGlobalBehaviour
         // if the player is at the given position, return true
 
         // if the player is still moving return false
+        return false;
     }
     public void PositionInFrontOfABall(GameObject player)
     {
