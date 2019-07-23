@@ -11,6 +11,10 @@ public class AIControl : MonoBehaviour
         TACKLE, 
         DEFEND
     }
+
+    public State state;
+    private bool alive;
+    
     void Start()
     {
 

@@ -65,4 +65,8 @@ public class AIControl : MonoBehaviour
     {
         controller.weapon.Shoot();
     }
+    public void MoveForward()
+    {
+
+    }
 }
