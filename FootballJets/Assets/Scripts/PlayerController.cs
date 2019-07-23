@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
     private PlayerController sprint;
     private bool sprinting;
 
-    
 
     public void Start()
     {
@@ -35,8 +34,6 @@ public class PlayerController : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        
-        
         if (sprinting && (movingHorizontal || movingVertical) )
         {
             stats.AddStamina(-globalSettings.staminaDrain);
@@ -45,6 +42,7 @@ public class PlayerController : MonoBehaviour
         {
             stats.AddStamina(globalSettings.staminaRecharge);
         }
+
         if (stats.GetStaminaStatus() >= 100)
         {
             stats.SetStamina(100);
@@ -53,11 +51,7 @@ public class PlayerController : MonoBehaviour
         if (stats.GetStaminaStatus() < 0)
         {
             stats.SetStamina(0);
-        }
-        
-        
-        
-        
+        }  
     }
 
     public void MovePlayer(float moveHorizontal, float moveVertical)
@@ -66,8 +60,6 @@ public class PlayerController : MonoBehaviour
         float h = moveHorizontal;
         float v = moveVertical;
 
-        
-        
 
         if (moveHorizontal < deadZone && moveHorizontal > -deadZone)
         {
@@ -89,10 +81,8 @@ public class PlayerController : MonoBehaviour
 
         Vector2 movement = new Vector2(h, v);
         rb2d.AddForce(movement * speed); 
-
     }
 
-   
     public void Sprint(float sprint)
     {
         if(sprint != 0)
@@ -111,7 +101,6 @@ public class PlayerController : MonoBehaviour
         {
             SetSprintingStatus(false);
         }
-        
     }
 
 
@@ -144,8 +133,4 @@ public class PlayerController : MonoBehaviour
         power *= Random.Range(0.3f, 1.5f);
         stats.AddHealth(-power);
     }
-
-    
-   
-    
 }

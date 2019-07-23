@@ -28,9 +28,14 @@ public class Weapon : MonoBehaviour
             currentGun.Shoot();
         }
     }
-    public void ChangeGun()
+    public void NextGun()
     {
         currentGun = weaponList.GetNextGun(currentGun);
+        ShowCurrentWeapon(true);
+    }
+    public void SetGun(string gunName)
+    {
+        currentGun = weaponList.SetGun(gunName);
         ShowCurrentWeapon(true);
     }
     public AbstractGun GetCurrentGun()

@@ -12,6 +12,8 @@ public class Controls : MonoBehaviour
     public Sword sword;
     public Shield shield;
     public Weapon weapon;
+
+    public bool aiControlled;
     
 
     private PlayerConfig playerConfig;
@@ -25,58 +27,86 @@ public class Controls : MonoBehaviour
     }
     void FixedUpdate()
     {
-        float sprint = Input.GetAxis(playerConfig.sprintKey);
-        float moveHorizontal = Input.GetAxis(playerConfig.horizontalL);
-        float moveVertical = Input.GetAxis(playerConfig.verticalL);
-        // Movement
-        playerController.MovePlayer(moveHorizontal, moveVertical);
+        if (!aiControlled)
+        {
 
-        /*
-         * Looking direction - player does not have to move in the direction
-         * that the player character is looking, this can be toggled
-         * on or off in the global settings under "Use Left To Rotate".
-         */
-        float lookHorizontal;
-        float lookVertical;
-        if (useLeftToRotate)
-        {
-            lookHorizontal = moveHorizontal;
-            lookVertical = moveVertical;
-        }
-        else
-        {
-            lookHorizontal = Input.GetAxisRaw(playerController.playerConfig.horizontalR);
-            lookVertical = Input.GetAxisRaw(playerController.playerConfig.verticalR);
-        }
-        playerRotator.Rotate(lookHorizontal, lookVertical);
+            float sprint = Input.GetAxis(playerConfig.sprintKey);
+            float moveHorizontal = Input.GetAxis(playerConfig.horizontalL);
+            float moveVertical = Input.GetAxis(playerConfig.verticalL);
+            // Movement
+            playerController.MovePlayer(moveHorizontal, moveVertical);
 
-        // Sprint
-        playerController.Sprint(sprint);
-        //playerController.Sprint();
-        
+            /*
+             * Looking direction - player does not have to move in the direction
+             * that the player character is looking, this can be toggled
+             * on or off in the global settings under "Use Left To Rotate".
+             */
+            float lookHorizontal;
+            float lookVertical;
+            if (useLeftToRotate)
+            {
+                lookHorizontal = moveHorizontal;
+                lookVertical = moveVertical;
+            }
+            else
+            {
+                lookHorizontal = Input.GetAxisRaw(playerController.playerConfig.horizontalR);
+                lookVertical = Input.GetAxisRaw(playerController.playerConfig.verticalR);
+            }
+            playerRotator.Rotate(lookHorizontal, lookVertical);
 
-        // Sword, Shield, Weapon
-        if (Input.GetButtonDown(playerConfig.swordKey))
-        {
-            sword.UseSword();
-        }
-        if (Input.GetButtonDown(playerConfig.shieldKey))
-        {
-            shield.UseShield();
-        }
-        if (Input.GetAxis(playerConfig.shootKey) > 0.1)
-        {
-            weapon.Shoot();
-        }
-        if (Input.GetButtonDown(playerConfig.changeGunKey))
-        {
-            weapon.ChangeGun();
-        }
-        if(Input.GetButtonDown(playerConfig.reloadGunKey))
-        {
-            weapon.Reload();
-        }
+            // Sprint
+            playerController.Sprint(sprint);
+            //playerController.Sprint();
 
-        
+
+            // Sword, Shield, Weapon
+            if (Input.GetButtonDown(playerConfig.swordKey))
+            {
+                UseSword();
+            }
+            if (Input.GetButtonDown(playerConfig.shieldKey))
+            {
+                UseShield();
+            }
+            if (Input.GetAxis(playerConfig.shootKey) > 0.1)
+            {
+                Shoot();
+            }
+            if (Input.GetButtonDown(playerConfig.changeGunKey))
+            {
+                NextGun();
+            }
+            if (Input.GetButtonDown(playerConfig.reloadGunKey))
+            {
+                Reload();
+            }
+
+        }
     }
+    public void UseSword()
+    {
+        sword.UseSword();
+    }
+    public void UseShield()
+    {
+        shield.UseShield();
+    }
+    public void Shoot()
+    {
+        weapon.Shoot();
+    }
+    public void NextGun()
+    {
+        weapon.NextGun();
+    }
+    public void SetGun(string gunName)
+    {
+        weapon.SetGun(gunName);
+    }
+    public void Reload()
+    {
+        weapon.Reload();
+    }
+
 }

@@ -27,6 +27,17 @@ public class WeaponList : MonoBehaviour
         }
         
     }
+    public AbstractGun SetGun(string gunName)
+    {
+        foreach(AbstractGun gun in guns)
+        {
+            if(gun.GetGunName() == gunName)
+            {
+                return gun;
+            }
+        }
+        return GetDefaultWeapon();
+    }
     public AbstractGun GetDefaultWeapon()
     {
         if(guns == null)
