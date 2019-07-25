@@ -56,8 +56,6 @@
      <Compile Include="Assets\_Completed-Assets\Scripts\CompleteCameraController.cs" />
      <Compile Include="Assets\_Completed-Assets\Scripts\CompletePlayerController.cs" />
      <Compile Include="Assets\_Completed-Assets\Scripts\CompleteRotator.cs" />
-     <Compile Include="Assets\AIController.cs" />
-     <Compile Include="Assets\AIUserInterface.cs" />
      <Compile Include="Assets\Animate.cs" />
      <Compile Include="Assets\ArrowRotator.cs" />
      <Compile Include="Assets\Controls.cs" />
@@ -74,8 +72,16 @@
      <Compile Include="Assets\PlayerConfig.cs" />
      <Compile Include="Assets\PlayerRotator.cs" />
      <Compile Include="Assets\ScoreUIController.cs" />
-     <Compile Include="Assets\Scripts\AI\AIControlState.cs" />
+     <Compile Include="Assets\Scripts\AI\AIAttackState.cs" />
+     <Compile Include="Assets\Scripts\AI\AIController.cs" />
+     <Compile Include="Assets\Scripts\AI\AIDefendState.cs" />
      <Compile Include="Assets\Scripts\AI\AIGlobalBehaviour.cs" />
+     <Compile Include="Assets\Scripts\AI\AIShootState.cs" />
+     <Compile Include="Assets\Scripts\AI\AIState.cs" />
+     <Compile Include="Assets\Scripts\AI\AIStateArea.cs" />
+     <Compile Include="Assets\Scripts\AI\AIStateController.cs" />
+     <Compile Include="Assets\Scripts\AI\AITackleState.cs" />
+     <Compile Include="Assets\Scripts\AI\AIUserInterface.cs" />
      <Compile Include="Assets\Scripts\AudioController.cs" />
      <Compile Include="Assets\Scripts\AudioScript.cs" />
      <Compile Include="Assets\Scripts\BallController.cs" />
@@ -376,9 +382,6 @@
  <Reference Include="UnityEngine.SpatialTracking">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.14f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>C:/Users/sylwester/Documents/GitHub/FootballJetsProject/FootballJets/Library/PackageCache/com.unity.ads@2.0.8/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="Unity.Analytics.Editor">
  <HintPath>C:/Users/sylwester/Documents/GitHub/FootballJetsProject/FootballJets/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
  </Reference>
@@ -387,9 +390,6 @@
  </Reference>
  <Reference Include="Unity.Analytics.Tracker">
  <HintPath>C:/Users/sylwester/Documents/GitHub/FootballJetsProject/FootballJets/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Purchasing">
- <HintPath>C:/Users/sylwester/Documents/GitHub/FootballJetsProject/FootballJets/Library/PackageCache/com.unity.purchasing@2.0.3/UnityEngine.Purchasing.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.14f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>

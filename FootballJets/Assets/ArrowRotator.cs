@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArrowRotator : MonoBehaviour
 {
-    public AIControl aiController;
+    public AIController aiController;
     private float h;
     private float v;
     void Start()
