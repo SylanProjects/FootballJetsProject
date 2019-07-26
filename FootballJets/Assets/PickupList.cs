@@ -23,6 +23,7 @@ public class PickupList : MonoBehaviour
   
     public void MakeAvailable(PickupActivator pickup)
     {
+        Start();
         pickupList.Add(pickup);
     }
     public void MakeUnavailable(PickupActivator pickup)

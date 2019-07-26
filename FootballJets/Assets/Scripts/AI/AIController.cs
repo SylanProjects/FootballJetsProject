@@ -51,8 +51,14 @@ public class AIController : MonoBehaviour
             shootState.Run();
         }
 
-        
-        debug.text = "Ball x Position" + ball.transform.position.x;
+
+        //debug.text = "Ball x Position" + ball.transform.position.x;
+        debug.text = "D: " + AIGlobalBehaviour.CalculateLengthBetween(player, ball);
+
+        float ballArrowx = ball.transform.position.x + 1 + ball.transform.position.x / 24; // distance between 0 and x position
+        float ballArrowy = ball.transform.position.y + ball.transform.position.y / 12; 
+
+        ballArrow.GetComponent<ArrowRotator>().SetPosition(ballArrowx, ballArrowy);
 
         /*
         /* Figuring the position of the ball and rotating the player in the right
@@ -102,5 +108,13 @@ public class AIController : MonoBehaviour
     public void MoveForward()
     {
 
+    }
+    public GameObject GetPlayerObject()
+    {
+        return player;
+    }
+    public GameObject GetBallObject()
+    {
+        return ball;
     }
 }

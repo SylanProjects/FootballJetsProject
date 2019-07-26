@@ -9,9 +9,13 @@ public class AIState : MonoBehaviour
      * but helps in reading and understanding the code.
      */
     protected AIStateController stateController;
+    protected GameObject player;
+    protected GameObject ball;
     public void Start()
     {
         GetState();
+        player = stateController.aIController.GetPlayerObject();
+        ball = stateController.aIController.GetBallObject();
     }
     private void GetState()
     {

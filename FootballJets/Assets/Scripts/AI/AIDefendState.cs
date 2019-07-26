@@ -10,9 +10,16 @@ public class AIDefendState : AIState
     public Text debug;
     public new void Run()
     {
-       
-        debug.text = "Defend State" + stateController.name;
 
+
+        //AIGlobalBehaviour.LookAt(player, ball);
+        //AIGlobalBehaviour.MoveForward(player);
+
+        AIGlobalBehaviour.PushBall(player, ball);
+        
+       
+
+        debug.text = "Defend State" + stateController.name;
         /* if the ball is not in between this player and the opposite goal
          * position in front of the goal to block the other player from scoring a goal
          * 
