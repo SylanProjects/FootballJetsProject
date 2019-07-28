@@ -9,7 +9,7 @@ public class AIAttackState : AIState
     public new void Run()
     {
         debug.text = "Attack State" + stateController.name;
-        AIGlobalBehaviour.PushBall(player, ball);
+        AIGlobalBehaviour.ShootAtGoal(player, ball, goal);
     }
     private void Defend()
     {

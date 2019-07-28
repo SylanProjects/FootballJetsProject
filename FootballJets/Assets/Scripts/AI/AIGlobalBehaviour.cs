@@ -8,9 +8,14 @@ public static class AIGlobalBehaviour
      * A proxy for the Control script but this class is able to use
      * any player game object. 
      */
+    private static float r = 0;
     public static Controls GetController(GameObject player)
     {
         return player.GetComponent<Controls>();
+    }
+    public static bool CheckIfBusy(GameObject player)
+    {
+        return player.GetComponent<PlayerController>().busyState.GetState();
     }
     public static void UseShield(GameObject player)
     {
@@ -18,11 +23,16 @@ public static class AIGlobalBehaviour
     }
     public static void UseSword(GameObject player)
     {
-        player.GetComponent<Controls>().UseSword();
+        
+        PlayerController playerController = player.GetComponent<PlayerController>();
+        
+        GetController(player).UseSword();
+        
+
     }
     public static void UseGun(GameObject player)
     {
-        player.GetComponent<Controls>().Shoot();
+        GetController(player).Shoot();
     }
     public static void Reload(GameObject player)
     {
@@ -85,6 +95,13 @@ public static class AIGlobalBehaviour
         float y = Mathf.Sin((float)radians);
         GetController(player).playerController.MovePlayer(-x, -y);
     }
+    public static void MoveUp(GameObject player)
+    {
+        double radians = player.transform.eulerAngles.z * Mathf.PI / 180;
+        float x = Mathf.Cos((float)radians);
+        float y = Mathf.Sin((float)radians);
+        GetController(player).playerController.MovePlayer(x * 0.5f, y);
+    }
     public static void RunToTheBall(GameObject player, GameObject ball)
     {
         LookAt(player, ball);
@@ -130,39 +147,152 @@ public static class AIGlobalBehaviour
         // if the player is still moving return false
         return false;
     }
-    public static void PositionInFrontOf(GameObject player, GameObject ball)
-    {
-        // Look behind the ball
-        //float bx = ball.transform.position.x + (ball.transform.position.x / 24); // distance between 0 and x position
-        //float by = ball.transform.position.y + (ball.transform.position.y / 12);
-        //LookAt(player, bx, by);
-        //MoveForward(player);
-
-
-        if(CalculateLengthBetween(player, ball) > 2)
-        {
-            RunToTheBall(player, ball);
-        }
-        if (CalculateLengthBetween(player, ball) < 2)
-        {
-            RunAwayFromBall(player, ball);
-        }
-        
-        
-    }
-    public static void PushBall(GameObject player, GameObject ball)
+    public static void PositionInFrontOf(GameObject player, GameObject ball, GameObject goal)
     {
 
-        PositionInFrontOf(player, ball);
-        // If the position of the x of the ball is higher than players, move right
+        Vector2 goalDirection = FindDirectionTo(ball, goal, 0.5f);
+        Vector2 playerDirection = FindDirectionTo(ball, player, 0.5f);
+
+        
+
+        Vector2 coordinates = AvoidTheBall(player, ball, goal, r);
 
 
-        /*
-        RunToTheBall(player, ball);
-        if (CalculateLengthBetween(player, ball) < 2)
+        if (CalculateLengthBetween(player, coordinates.x, coordinates.y) > 1)
         {
-            PositionInFrontOf(player, ball);
-        }*/
+            r = 0;
+            LookAt(player, coordinates.x, coordinates.y);
+            MoveForward(player);
+        } else
+        {
+            r += 0.3f;
+            Vector2 c = AvoidTheBall(player, ball, goal, r);
+            LookAt(player, c.x, c.y);
+            MoveForward(player);
+        }
         
     }
+    public static Vector2 AvoidTheBall(GameObject player, GameObject ball, GameObject goal, float r)
+    {
+        double goalAngle = GetAngle(ball, goal, 1);
+        double playerAngle = GetAngle(ball, player, -1);
+
+        float nAngle = (float)playerAngle * (1 - r) + (float)goalAngle * r;
+
+        Vector2 des = GetRadians(nAngle);
+        return FindDirectionTo(ball, des);
+    }
+    public static void PushBall(GameObject player, GameObject ball, GameObject goal)
+    {
+
+        Vector2 goalDirection = FindDirectionTo(ball, goal, 1);
+        
+        if (CalculateLengthBetween(player, goalDirection.x, goalDirection.y) < 0.2)
+        {
+           LookAt(player, goal);
+           MoveForward(player);
+            //PositionInFrontOf(player, ball, goal);
+        }
+        else
+        {
+            PositionInFrontOf(player, ball, goal);
+        }
+    }
+    public static void ShootAtGoal(GameObject player, GameObject ball, GameObject goal)
+    {
+
+        Vector2 goalDirection = FindDirectionTo(ball, goal, 0.6f);
+
+        //PushBall(player, ball, goal);
+        if (CalculateLengthBetween(player, goalDirection.x, goalDirection.y) < 0.4)
+        {
+            //LookAt(player, goal);
+            UseSword(player);
+        }
+        PositionInFrontOf(player, ball, goal);
+    }
+
+    
+    public static Vector2 FindDirectionTo(GameObject ball, GameObject goal, float offset)
+    {
+        /* This method calculates the position of the direction to the goal. 
+         */
+         
+
+        Vector2 radians = GetRadians(ball, goal, offset);
+        float x2 = radians.x;
+        float y2 = radians.y;
+
+        float ballArrowx = ball.transform.position.x - y2;
+        float ballArrowy = ball.transform.position.y - x2;
+
+        return new Vector2(ballArrowx, ballArrowy);
+
+    }
+    public static Vector2 FindDirectionTo(GameObject ball, Vector2 angle)
+    {
+        float x2 = angle.x;
+        float y2 = angle.y;
+
+        float ballArrowx = ball.transform.position.x - y2;
+        float ballArrowy = ball.transform.position.y - x2;
+
+        return new Vector2(ballArrowx, ballArrowy);
+    }
+
+
+    public static Vector2 GetRadians(GameObject source, GameObject destination, float offset)
+    {
+        /* This method returns radians in the wanted direction. 
+         * It basically converts angles to a Vector. 
+         */
+        double angle = GetAngle(source, destination, offset);
+        
+        float x2 = Mathf.Cos((float)angle) * offset;
+        float y2 = Mathf.Sin((float)angle) * offset;
+
+        return new Vector2(x2, y2);
+    }
+
+   
+    public static double GetAngle(GameObject source, GameObject destination, float offset)
+    {
+        float ballx = destination.transform.position.x - source.transform.position.x;
+        float bally = destination.transform.position.y - source.transform.position.y;
+        float angle = Mathf.Atan2(ballx * offset, bally * offset) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        double radians2 = rotation.eulerAngles.z * Mathf.PI / 180;
+        return radians2; 
+
+    }
+
+
+
+
+
+    public static Vector2 FindDirectionTo(GameObject source, float x, float y)
+    {
+        /* This method calculates the position of the direction to the goal. 
+         * 
+         */
+
+        float ballArrowx = source.transform.position.x - y;
+        float ballArrowy = source.transform.position.y - x;
+
+        return new Vector2(ballArrowx, ballArrowy);
+
+    }
+
+    public static Vector2 GetRadians(double angle)
+    {
+        
+        float x2 = Mathf.Cos((float)angle);
+        float y2 = Mathf.Sin((float)angle);
+
+        return new Vector2(x2, y2);
+    }
+
+
+
 }

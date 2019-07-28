@@ -96,7 +96,7 @@ public class Sword : MonoBehaviour
     {
 
         Vector2 rotation = playerRotation.GetRotation().GetVector();
-        collision.attachedRigidbody.AddForce(rotation * strength);
+        collision.attachedRigidbody.AddForce(rotation * (strength * (this.transform.localScale.x / 9) ));
     }
 
 

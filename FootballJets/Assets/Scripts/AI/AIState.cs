@@ -11,11 +11,13 @@ public class AIState : MonoBehaviour
     protected AIStateController stateController;
     protected GameObject player;
     protected GameObject ball;
+    protected GameObject goal;
     public void Start()
     {
         GetState();
         player = stateController.aIController.GetPlayerObject();
         ball = stateController.aIController.GetBallObject();
+        goal = stateController.aIController.GetOppositeGoal();
     }
     private void GetState()
     {

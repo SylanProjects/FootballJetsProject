@@ -9,6 +9,6 @@ public class AIShootState : AIState
     public new void Run()
     {
         debug.text = "Shoot State" + stateController.name;
-        AIGlobalBehaviour.PushBall(player, ball);
+        AIGlobalBehaviour.ShootAtGoal(player, ball, goal);
     }
 }

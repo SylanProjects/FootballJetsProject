@@ -9,7 +9,7 @@ public class AITackleState : AIState
     public new void Run()
     {
         debug.text = "Tackle State" + stateController.name;
-        AIGlobalBehaviour.PushBall(player, ball);
+        AIGlobalBehaviour.PushBall(player, ball, goal);
     }
     
 }

@@ -15,7 +15,7 @@ public class AIDefendState : AIState
         //AIGlobalBehaviour.LookAt(player, ball);
         //AIGlobalBehaviour.MoveForward(player);
 
-        AIGlobalBehaviour.PushBall(player, ball);
+        AIGlobalBehaviour.PushBall(player, ball, goal);
         
        
 

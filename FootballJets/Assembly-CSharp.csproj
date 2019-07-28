@@ -78,6 +78,7 @@
     <Compile Include="Assets\PickupSpawnController.cs" />
     <Compile Include="Assets\PickupTimer.cs" />
     <Compile Include="Assets\PlayerConfig.cs" />
+    <Compile Include="Assets\PlayerMovementSetter.cs" />
     <Compile Include="Assets\PlayerRotator.cs" />
     <Compile Include="Assets\ScoreUIController.cs" />
     <Compile Include="Assets\Scripts\AI\AIAttackState.cs" />

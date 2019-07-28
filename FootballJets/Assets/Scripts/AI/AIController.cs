@@ -21,6 +21,7 @@ public class AIController : MonoBehaviour
     public AITackleState tackleState;
     public AIAttackState attackState;
     public AIShootState shootState;
+    private float r; 
     
     
     
@@ -29,6 +30,7 @@ public class AIController : MonoBehaviour
     public void Start()
     {
         controller = player.gameObject.GetComponent<Controls>();
+        float r = 0;
     }
     public void FixedUpdate()
     {
@@ -51,14 +53,53 @@ public class AIController : MonoBehaviour
             shootState.Run();
         }
 
+       
 
-        //debug.text = "Ball x Position" + ball.transform.position.x;
-        debug.text = "D: " + AIGlobalBehaviour.CalculateLengthBetween(player, ball);
+        Vector2 v = AIGlobalBehaviour.FindDirectionTo(ball, goal, 0.6f);
+        ballArrow.GetComponent<ArrowRotator>().SetPosition(v.x, v.y);
+        Vector2 p = AIGlobalBehaviour.FindDirectionTo(ball, player, -1);
+        //goalArrow.GetComponent<ArrowRotator>().SetPosition(p.x, p.y);
 
-        float ballArrowx = ball.transform.position.x + 1 + ball.transform.position.x / 24; // distance between 0 and x position
-        float ballArrowy = ball.transform.position.y + ball.transform.position.y / 12; 
+        /*
+        Vector2 goalRadian = AIGlobalBehaviour.GetRadians(ball, goal, 1);
+        Vector2 playerRadian = AIGlobalBehaviour.GetRadians(ball, player, -1);
 
-        ballArrow.GetComponent<ArrowRotator>().SetPosition(ballArrowx, ballArrowy);
+        /*
+        float xPR = playerRadian.x * (1 - r);
+        float xGR = goalRadian.x * r;
+        float xR = xPR + xGR;
+
+        float yPR = playerRadian.y * (1 - r);
+        float yGR = goalRadian.y * r;
+        float yR = yPR + yGR;*/
+
+
+        r += 0.01f;
+        if (r >= 1)
+        {
+            r = 0;
+        }
+        double goalAngle = AIGlobalBehaviour.GetAngle(ball, goal, 1);
+        double playerAngle = AIGlobalBehaviour.GetAngle(ball, player, -1);
+
+        float nAngle = (float)playerAngle * (1 - r) + (float)goalAngle * r;
+
+        Vector2 des = AIGlobalBehaviour.GetRadians(nAngle);
+        Vector2 coordinates = AIGlobalBehaviour.FindDirectionTo(ball, des);
+
+
+        goalArrow.GetComponent<ArrowRotator>().SetPosition(coordinates.x, coordinates.y);
+
+
+
+
+        //Vector2 newPosition = AIGlobalBehaviour.FindDirectionTo(ball, xR, yR);
+
+       // goalArrow.GetComponent<ArrowRotator>().SetPosition(newPosition.x, newPosition.y);
+
+
+       // debug.text = " busy: " + AIGlobalBehaviour.CheckIfBusy(player);
+
 
         /*
         /* Figuring the position of the ball and rotating the player in the right
@@ -116,5 +157,9 @@ public class AIController : MonoBehaviour
     public GameObject GetBallObject()
     {
         return ball;
+    }
+    public GameObject GetOppositeGoal()
+    {
+        return goal;
     }
 }
