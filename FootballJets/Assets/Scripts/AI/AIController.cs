@@ -79,26 +79,37 @@ public class AIController : MonoBehaviour
         {
             r = 0;
         }
+        float ar = player.GetComponent<Counter>().a;
         double goalAngle = AIGlobalBehaviour.GetAngle(ball, goal, 1);
         double playerAngle = AIGlobalBehaviour.GetAngle(ball, player, -1);
 
         float nAngle = (float)playerAngle * (1 - r) + (float)goalAngle * r;
 
-        Vector2 des = AIGlobalBehaviour.GetRadians(nAngle);
+        Vector2 des = AIGlobalBehaviour.GetRadians(nAngle, 1.3f);
         Vector2 coordinates = AIGlobalBehaviour.FindDirectionTo(ball, des);
 
 
         goalArrow.GetComponent<ArrowRotator>().SetPosition(coordinates.x, coordinates.y);
+
+        
+        double a = AIGlobalBehaviour.GetAngle(player, coordinates.x, coordinates.y);
+        Vector2 d = AIGlobalBehaviour.GetRadians(a);
+        AIMovementBehaviour.MoveForward(player, d.y, d.x);
+
+        debug.text = " x: " + d;
+
+
+
 
 
 
 
         //Vector2 newPosition = AIGlobalBehaviour.FindDirectionTo(ball, xR, yR);
 
-       // goalArrow.GetComponent<ArrowRotator>().SetPosition(newPosition.x, newPosition.y);
+        // goalArrow.GetComponent<ArrowRotator>().SetPosition(newPosition.x, newPosition.y);
 
 
-       // debug.text = " busy: " + AIGlobalBehaviour.CheckIfBusy(player);
+        // debug.text = " busy: " + AIGlobalBehaviour.CheckIfBusy(player);
 
 
         /*

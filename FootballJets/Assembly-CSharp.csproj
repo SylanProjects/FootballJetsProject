@@ -67,6 +67,7 @@
     <Compile Include="Assets\Animate.cs" />
     <Compile Include="Assets\ArrowRotator.cs" />
     <Compile Include="Assets\Controls.cs" />
+    <Compile Include="Assets\Counter.cs" />
     <Compile Include="Assets\Exit.cs" />
     <Compile Include="Assets\GlobalTimer.cs" />
     <Compile Include="Assets\PickupActivator.cs" />
@@ -84,13 +85,17 @@
     <Compile Include="Assets\Scripts\AI\AIAttackState.cs" />
     <Compile Include="Assets\Scripts\AI\AIController.cs" />
     <Compile Include="Assets\Scripts\AI\AIDefendState.cs" />
-    <Compile Include="Assets\Scripts\AI\AIGlobalBehaviour.cs" />
     <Compile Include="Assets\Scripts\AI\AIShootState.cs" />
     <Compile Include="Assets\Scripts\AI\AIState.cs" />
     <Compile Include="Assets\Scripts\AI\AIStateArea.cs" />
     <Compile Include="Assets\Scripts\AI\AIStateController.cs" />
     <Compile Include="Assets\Scripts\AI\AITackleState.cs" />
     <Compile Include="Assets\Scripts\AI\AIUserInterface.cs" />
+    <Compile Include="Assets\Scripts\AI\Behaviour\AIBasicBehaviour.cs" />
+    <Compile Include="Assets\Scripts\AI\Behaviour\AICalculate.cs" />
+    <Compile Include="Assets\Scripts\AI\Behaviour\AIGlobalBehaviour.cs" />
+    <Compile Include="Assets\Scripts\AI\Behaviour\AIMovementBehaviour.cs" />
+    <Compile Include="Assets\Scripts\AI\Behaviour\AITeamBehaviour.cs" />
     <Compile Include="Assets\Scripts\AudioController.cs" />
     <Compile Include="Assets\Scripts\AudioScript.cs" />
     <Compile Include="Assets\Scripts\BallController.cs" />

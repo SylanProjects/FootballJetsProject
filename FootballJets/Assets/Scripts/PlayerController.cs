@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector2 movement = new Vector2(h, v);
-        rb2d.AddForce(movement * speed); 
+        rb2d.AddForce(movement * speed * Time.deltaTime); 
     }
 
     public void Sprint(float sprint)

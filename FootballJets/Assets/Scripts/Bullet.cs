@@ -22,14 +22,14 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.name);
+        
         if(collision.gameObject.CompareTag("Ball"))
         {
             Bounce(collision);
             Destroy(gameObject);
 
         }
-        if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Player2"))
+        if(collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<PlayerController>().GetHit(strength);
             Destroy(gameObject);

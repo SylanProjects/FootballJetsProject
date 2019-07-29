@@ -12,14 +12,14 @@ public class CrosshairMouseControl : MonoBehaviour
     public Text debug;
     public PlayerConfig playerConfig;
 
-
+    /*
     private float h;
     private float v;
     public void Start()
     {
         h = 0;
         v = 0;
-    }
+    }*/
     private void Update()
     {
         Push();

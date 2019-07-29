@@ -11,19 +11,15 @@ public class PickupList : MonoBehaviour
     public PickupActivator bottomRight;
     public PickupActivator bottomMiddle;
 
-    private List<PickupActivator> pickupList;
+    private List<PickupActivator> pickupList = new List<PickupActivator> {
+            
+        };
     
 
-    public void Start()
-    {
-        
-        pickupList = new List<PickupActivator> { };
-
-    }
+    
   
     public void MakeAvailable(PickupActivator pickup)
     {
-        Start();
         pickupList.Add(pickup);
     }
     public void MakeUnavailable(PickupActivator pickup)
