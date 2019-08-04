@@ -10,13 +10,7 @@ public class AIAttackState : AIState
     {
         debug.text = "Attack State" + stateController.name;
         AIGlobalBehaviour.ShootAtGoal(player, ball, goal);
+        
     }
-    private void Defend()
-    {
-
-    }
-    private void ShootAtTheGoal()
-    {
-
-    }
+    
 }

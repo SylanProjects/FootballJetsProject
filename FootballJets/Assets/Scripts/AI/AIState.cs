@@ -9,15 +9,16 @@ public class AIState : MonoBehaviour
      * but helps in reading and understanding the code.
      */
     protected AIStateController stateController;
-    protected GameObject player;
-    protected GameObject ball;
-    protected GameObject goal;
+    protected GameObject player, ball, goal;
+    protected AIController aIController;
+
     public void Start()
     {
         GetState();
         player = stateController.aIController.GetPlayerObject();
         ball = stateController.aIController.GetBallObject();
         goal = stateController.aIController.GetOppositeGoal();
+        aIController = stateController.aIController;
     }
     private void GetState()
     {

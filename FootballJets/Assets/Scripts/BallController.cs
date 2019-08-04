@@ -38,14 +38,14 @@ public class BallController : MonoBehaviour
         if (other.gameObject.CompareTag("LeftGoal"))
         {
 
-            player2Stats.AddGoal(1);
+            player2.team.AddGoal(1);
             SetPlayerPositions();
             
         }
         if (other.gameObject.CompareTag("RightGoal"))
         {
             
-            player1Stats.AddGoal(1);
+            player1.team.AddGoal(1);
             SetPlayerPositions();
            
 

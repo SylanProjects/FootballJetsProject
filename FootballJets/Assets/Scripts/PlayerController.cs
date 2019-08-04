@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public Stats stats;
     public BusyState busyState;
     public CrosshairMouseControl body;
+    public TeamController team;
 
     private bool movingHorizontal = true;
     private bool movingVertical = true;

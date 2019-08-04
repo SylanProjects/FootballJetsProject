@@ -70,6 +70,8 @@
     <Compile Include="Assets\Counter.cs" />
     <Compile Include="Assets\Exit.cs" />
     <Compile Include="Assets\GlobalTimer.cs" />
+    <Compile Include="Assets\GoalSightEnd.cs" />
+    <Compile Include="Assets\LineOfSight.cs" />
     <Compile Include="Assets\PickupActivator.cs" />
     <Compile Include="Assets\PickupControl.cs" />
     <Compile Include="Assets\PickupController.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="Assets\Scripts\AI\AIAttackState.cs" />
     <Compile Include="Assets\Scripts\AI\AIController.cs" />
     <Compile Include="Assets\Scripts\AI\AIDefendState.cs" />
+    <Compile Include="Assets\Scripts\AI\AILineOfSight.cs" />
     <Compile Include="Assets\Scripts\AI\AIShootState.cs" />
     <Compile Include="Assets\Scripts\AI\AIState.cs" />
     <Compile Include="Assets\Scripts\AI\AIStateArea.cs" />
@@ -93,6 +96,7 @@
     <Compile Include="Assets\Scripts\AI\AIUserInterface.cs" />
     <Compile Include="Assets\Scripts\AI\Behaviour\AIBasicBehaviour.cs" />
     <Compile Include="Assets\Scripts\AI\Behaviour\AICalculate.cs" />
+    <Compile Include="Assets\Scripts\AI\Behaviour\AIDirectionBehaviour.cs" />
     <Compile Include="Assets\Scripts\AI\Behaviour\AIGlobalBehaviour.cs" />
     <Compile Include="Assets\Scripts\AI\Behaviour\AIMovementBehaviour.cs" />
     <Compile Include="Assets\Scripts\AI\Behaviour\AITeamBehaviour.cs" />
@@ -128,6 +132,7 @@
     <Compile Include="Assets\Scripts\Weapons\WeaponList.cs" />
     <Compile Include="Assets\StateController.cs" />
     <Compile Include="Assets\SwordSprite.cs" />
+    <Compile Include="Assets\TeamController.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\TutorialInfo.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />

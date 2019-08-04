@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Stats : MonoBehaviour
 {
-   
-    
-    public int score;
+
     public PlayerController player;
     public Weapon weapon;
 
@@ -21,7 +19,6 @@ public class Stats : MonoBehaviour
         health = player.globalSettings.health;
         stamina = player.globalSettings.stamina;
         shield = 0;
-        score = 0;
         weapon.weaponList.Start();
         weapon.weaponList.AddAmmo("Pistol", player.globalSettings.pistolAmmo);
         weapon.weaponList.AddAmmo("MachineGun", player.globalSettings.machineGunAmmo);
@@ -56,11 +53,7 @@ public class Stats : MonoBehaviour
             health += 0.01f;
         }
     }
-    public void AddGoal(int points)
-    {
-        score += points;
-    }
-
+    
     public void AddHealth(float amount)
     {
         
@@ -70,10 +63,7 @@ public class Stats : MonoBehaviour
             this.health = 100;
         }
     }
-    public int GetScore()
-    {
-        return score;
-    }
+    
     public float GetShieldStatus()
     {
         return this.shield;

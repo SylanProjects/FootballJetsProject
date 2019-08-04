@@ -18,6 +18,7 @@ public static class AIBasicBehaviour
     }
     public static void UseSword(GameObject player)
     {
+        AIMovementBehaviour.MoveBackward(player);
         PlayerController playerController = player.GetComponent<PlayerController>();
         GetController(player).UseSword();
     }

@@ -59,12 +59,11 @@ public static class AIMovementBehaviour
         LookAt(player, ball);
         MoveBackward(player);
     }
-    public static bool MoveTo(GameObject player, float x, float y)
+    public static void MoveTowards(GameObject player, float x, float y)
     {
-        // if the player is at the given position, return true
-
-        // if the player is still moving return false
-        return false;
+        double a = AIDirectionBehaviour.GetAngle(player, x, y);
+        Vector2 d = AIDirectionBehaviour.GetRadians(a);
+        AIMovementBehaviour.MoveForward(player, d.y, d.x);
     }
     public static void GetAPickup(GameObject player)
     {
