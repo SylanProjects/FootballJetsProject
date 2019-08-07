@@ -7,7 +7,6 @@ public class AIController : MonoBehaviour
 {
     
     public GameObject ball, player, opponent;
-    // public GameObject ballArrow, goalArrow;
 
     public Text debug;
     public PlayerConfig playerConfig;
@@ -23,7 +22,6 @@ public class AIController : MonoBehaviour
 
 
 
-    
     private Controls controller;
     public void Start()
     {
@@ -31,6 +29,12 @@ public class AIController : MonoBehaviour
     }
     public void FixedUpdate()
     {
+        /* First find the position of the ball on the x axis and than compare it 
+         * with the state boundary which is the point where the states meet. 
+         * There is no need to make different states for the y axis since 
+         * the AI should change its behaviour based on how far away/close he is
+         * from its own and from the opponents goal.
+         */
         float xPos = ball.transform.position.x;
         float b = player.GetComponent<PlayerController>().team.GetStateBoundary();
 
@@ -64,5 +68,9 @@ public class AIController : MonoBehaviour
     public GameObject GetOppositeGoal()
     {
         return player.GetComponent<PlayerController>().team.opponentGoal;
+    }
+    public GameObject GetOpponent()
+    {
+        return opponent;
     }
 }

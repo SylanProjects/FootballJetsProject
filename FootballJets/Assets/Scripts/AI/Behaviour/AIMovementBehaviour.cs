@@ -8,6 +8,8 @@ public static class AIMovementBehaviour
     {
         /* This method makes the player look at the object. 
          * This is usually used to make the player look at the ball. 
+         * First the position of the object we want to look at, in regards of the player
+         * is found and then the player is rotated. 
          */
         float x = o.transform.position.x - player.transform.position.x;
         float y = o.transform.position.y - player.transform.position.y;
@@ -31,6 +33,8 @@ public static class AIMovementBehaviour
     }
     public static void MoveForward(GameObject player, float x, float y)
     {
+        /* x and y are not the position of the object but the vector towards it. 
+        */
         AIBasicBehaviour.GetController(player).playerController.MovePlayer(x, y);
     }
     public static void MoveBackward(GameObject player)
@@ -50,20 +54,28 @@ public static class AIMovementBehaviour
     }
     public static void RunToTheBall(GameObject player, GameObject ball)
     {
-        LookAt(player, ball);
-        MoveForward(player);
+        /* This method requires the player character to look at the ball first. 
+         */
+        //LookAt(player, ball);
+        // MoveForward(player);
+        MoveTowards(player, ball.transform.position.x, ball.transform.position.y);
 
     }
     public static void RunAwayFromBall(GameObject player, GameObject ball)
     {
-        LookAt(player, ball);
-        MoveBackward(player);
+        // LookAt(player, ball);
+        // MoveBackward(player);
+        MoveTowards(player, ball.transform.position.x, ball.transform.position.y);
     }
     public static void MoveTowards(GameObject player, float x, float y)
     {
-        double a = AIDirectionBehaviour.GetAngle(player, x, y);
-        Vector2 d = AIDirectionBehaviour.GetRadians(a);
-        AIMovementBehaviour.MoveForward(player, d.y, d.x);
+        /* First the angle from the player to the given position needs to be found
+         * since the player does not necessarily has to look in the direction
+         * that it is moving. 
+         */
+        double a = AIDirectionBehaviour.GetRadian(player, x, y);
+        Vector2 d = AIDirectionBehaviour.GetDirectionVector(a);
+        MoveForward(player, d.y, d.x);
     }
     public static void GetAPickup(GameObject player)
     {

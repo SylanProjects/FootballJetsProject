@@ -18,8 +18,8 @@ public static class AIBasicBehaviour
     }
     public static void UseSword(GameObject player)
     {
+
         AIMovementBehaviour.MoveBackward(player);
-        PlayerController playerController = player.GetComponent<PlayerController>();
         GetController(player).UseSword();
     }
     public static void UseGun(GameObject player)
@@ -28,7 +28,7 @@ public static class AIBasicBehaviour
     }
     public static void Reload(GameObject player)
     {
-        player.GetComponent<Controls>().Reload();
+        GetController(player).Reload();
     }
     public static void Sprint(GameObject player)
     {
@@ -36,10 +36,10 @@ public static class AIBasicBehaviour
     }
     public static void SetGun(GameObject player, string gunName)
     {
-        player.GetComponent<Controls>().SetGun(gunName);
+        GetController(player).SetGun(gunName);
     }
     public static void NextGun(GameObject player)
     {
-        player.GetComponent<Controls>().NextGun();
+        GetController(player).NextGun();
     }
 }
