@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class AIShootState : AIState
 {
     public Text debug;
+
+    
     
     public new void Run()
     {
@@ -18,7 +20,6 @@ public class AIShootState : AIState
          * to push it into the goal. 
          */
 
-
         if (aIController.lineOfSight.CheckIfWallSpotted())
         {
             
@@ -30,31 +31,64 @@ public class AIShootState : AIState
         }
 
         int position = AIHelperMethods.GetPositionStatus(player, opponent, ball, goal);
+
         AIHelperMethods.ChooseRunMethod(this, position);
 
 
-        debug.text = "pos: " + AIHelperMethods.GetPositionStatus(player, opponent, ball, goal);
-
+        //debug.text = "pos: " + AIHelperMethods.GetPositionStatus(player, opponent, ball, goal);
+        debug.text = CheckIfFarFromBall() + "  balLSpotted: " + aIController.lineOfSight.CheckIfBallSpotted();
 
     }
     public new void RunZeroPosition()
     {
         /* OGoal | Ball | Player, AI | AIGoal
          */
+        if (CheckIfFarFromBall())
+        {
+
+        }
+        else
+        {
+
+        }
     }
     public new void RunOnePosition()
     {
         /* OGoal | AI | Ball | Player | AIGoal
          */
+        if (CheckIfFarFromBall())
+        {
+
+        }
+        else
+        {
+
+        }
     }
     public new void RunTwoPosition()
     {
         /* OGoal | Player | Ball | AI | AIGoal
          */
+        if (CheckIfFarFromBall())
+        {
+
+        }
+        else
+        {
+
+        }
     }
     public new void RunThreePosition()
     {
         /* OGoal | Player, AI | Ball | AIGoal
          */
+        if (CheckIfFarFromBall())
+        {
+
+        }
+        else
+        {
+
+        }
     }
 }

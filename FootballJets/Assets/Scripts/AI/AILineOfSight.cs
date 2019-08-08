@@ -12,15 +12,18 @@ public class AILineOfSight : MonoBehaviour
     public AIController aiController;
     public Transform goalSightEnd;
     public GameObject dummy;
-    private Transform playerSightStart, playerSightEnd; 
+    private Transform playerSightStart, playerSightEnd;
 
-    public bool playerSpotted = false, 
-        wallSpottedMiddle = false, 
-        wallSpottedTop = false, 
+    public bool playerSpotted = false,
+        wallSpottedMiddle = false,
+        wallSpottedTop = false,
         wallSpottedBottom = false,
         playerSpottedMiddle = false,
         playerSpottedTop = false,
-        playerSpottedBottom = false;
+        playerSpottedBottom = false,
+        ballSpottedMiddle = false,
+        ballSpottedTop = false,
+        ballSpottedBottom = false;
 
     private Vector2 goalTop, goalBottom, goalMiddle;
 
@@ -58,13 +61,19 @@ public class AILineOfSight : MonoBehaviour
         // Middle
         wallSpottedMiddle = Physics2D.Linecast(playerSightStart.position, goalMiddle, 1 << LayerMask.NameToLayer("Wall"));
         playerSpottedMiddle =  Physics2D.Linecast(playerSightStart.position, goalMiddle, 1 << LayerMask.NameToLayer("Player"));
+        ballSpottedMiddle = Physics2D.Linecast(playerSightStart.position, goalMiddle, 1 << LayerMask.NameToLayer("Ball"));
+
         // Top
         wallSpottedTop = Physics2D.Linecast(playerSightStart.position, goalTop, 1 << LayerMask.NameToLayer("Wall"));
         playerSpottedTop = Physics2D.Linecast(playerSightStart.position, goalTop, 1 << LayerMask.NameToLayer("Player"));
+        ballSpottedTop = Physics2D.Linecast(playerSightStart.position, goalTop, 1 << LayerMask.NameToLayer("Ball"));
+
         // Bottom
         wallSpottedBottom = Physics2D.Linecast(playerSightStart.position, goalBottom, 1 << LayerMask.NameToLayer("Wall"));
         playerSpottedBottom = Physics2D.Linecast(playerSightStart.position, goalBottom, 1 << LayerMask.NameToLayer("Player"));
-        
+        ballSpottedBottom = Physics2D.Linecast(playerSightStart.position, goalBottom, 1 << LayerMask.NameToLayer("Ball"));
+
+
         GetAvailablePoint();
 
         // Debug
@@ -81,6 +90,11 @@ public class AILineOfSight : MonoBehaviour
     public bool CheckIfWallSpotted()
     {
         bool ret = wallSpottedMiddle || wallSpottedBottom || wallSpottedTop;
+        return ret;
+    }
+    public bool CheckIfBallSpotted()
+    {
+        bool ret = ballSpottedBottom || ballSpottedMiddle || ballSpottedTop;
         return ret;
     }
    
@@ -103,4 +117,5 @@ public class AILineOfSight : MonoBehaviour
         }
         return dummy;
     }
+    
 }

@@ -14,28 +14,18 @@ public class Sword : MonoBehaviour
     public Weapon weapon;
     public SwordSprite swordSprite;
     
-
-
-
-
-    // Start is called before the first frame update
     void Start()
     {
-        //  rb.velocity = transform.right * speed;
         this.transform.localScale = new Vector2(0, 0);
         swordSprite.gameObject.SetActive(false);
-
     }
     private void Update()
     {
-        
-
         if (this.transform.localPosition.x > 0 && this.transform.localPosition.x <= 3)
         {
             Push();
         }
-        
-        
+
     }
     public void UseSword()
     {
@@ -55,7 +45,7 @@ public class Sword : MonoBehaviour
     {
         /*
          * This function creates an invisible collider and pushes it in front of the player, 
-         * this "push" is needed to create velocity so when it collides with the ball
+         * it is needed to create velocity so when it collides with the ball
          * it will push it back. The force (bounciness) with which it pushes the ball can be configured in the 
          * 'Physics' folder, in the file 'Sword'. 
          * To make sure the ball is only pushed when it is infront of the player, 
@@ -63,17 +53,20 @@ public class Sword : MonoBehaviour
          */
         float x = this.transform.localPosition.x;
         float y = this.transform.localPosition.y;
+        // Move it at a given rate
         this.transform.localPosition = new Vector2(x + 0.6f, y);
+        // Now scale it 
         x = this.transform.localScale.x;
         this.transform.localScale = new Vector2(x+2f, 0);
         if (this.transform.localPosition.x >= 3)
         {
+            // Reset the position and the scale
             this.transform.localPosition = new Vector2(0, 0);
             this.transform.localScale = new Vector2(0, 0);
             playerController.busyState.SetState(false);
             weapon.ShowCurrentWeapon(true);
+            // The sword sprite is not needed anymore
             swordSprite.gameObject.SetActive(false);
-
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -89,14 +82,11 @@ public class Sword : MonoBehaviour
             Bounce(collision, 200);
             collision.gameObject.GetComponent<PlayerController>().GetHit(5);
         }
-
-
     }
     void Bounce(Collider2D collision, float strength)
     {
-
         Vector2 rotation = playerRotation.GetRotation().GetVector();
-        collision.attachedRigidbody.AddForce(rotation * (strength * (this.transform.localScale.x / 9) ));
+        collision.attachedRigidbody.AddForce(rotation * (strength * (this.transform.localScale.x / 18) ));
     }
 
 

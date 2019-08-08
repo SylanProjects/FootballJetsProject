@@ -19,6 +19,10 @@ public static class AIMovementBehaviour
     {
         AIBasicBehaviour.GetController(player).playerRotator.Rotate(x - player.transform.position.x, y - player.transform.position.y);
     }
+    public static void LookAt(GameObject player, Vector2 vector)
+    {
+        LookAt(player, vector.x, vector.y);
+    }
     public static void MoveForward(GameObject player)
     {
         /* This method moves player forward but it does not
@@ -76,6 +80,12 @@ public static class AIMovementBehaviour
         double a = AIDirectionBehaviour.GetRadian(player, x, y);
         Vector2 d = AIDirectionBehaviour.GetDirectionVector(a);
         MoveForward(player, d.y, d.x);
+    }
+    public static void MoveTowards(GameObject player, GameObject destination)
+    {
+        float x = destination.transform.position.x;
+        float y = destination.transform.position.y;
+        MoveTowards(player, x, y);
     }
     public static void GetAPickup(GameObject player)
     {

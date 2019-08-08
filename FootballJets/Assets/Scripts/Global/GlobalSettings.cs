@@ -31,7 +31,9 @@ public class GlobalSettings : MonoBehaviour
     public float pickupSpawnFrequency = 20;
 
     // AI
-    public float stateBoundary = 12; 
-    
+    public float stateBoundary = 12;
+    public int allowableDistanceFromBall = 15;
+
+
 
 }

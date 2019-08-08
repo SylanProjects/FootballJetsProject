@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class WeaponList : MonoBehaviour
 {
+    /* This class takes of the weapons by keeping a list of each gun 
+     * and by giving options to set, change or add weapons.
+     */
     private List<AbstractGun> guns;   
     public AbstractGun pistol;
     public AbstractGun machineGun;

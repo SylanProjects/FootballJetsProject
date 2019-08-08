@@ -13,11 +13,9 @@ public class Weapon : MonoBehaviour
     public WeaponList weaponList;
 
     private AbstractGun currentGun;
-    
 
     public void Start()
     {
-
         currentGun = weaponList.GetDefaultWeapon();
     }
     

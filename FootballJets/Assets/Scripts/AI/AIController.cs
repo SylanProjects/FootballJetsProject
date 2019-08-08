@@ -20,6 +20,8 @@ public class AIController : MonoBehaviour
 
     public AILineOfSight lineOfSight;
 
+    public PickupList pickupList;
+
 
 
     private Controls controller;
@@ -73,4 +75,13 @@ public class AIController : MonoBehaviour
     {
         return opponent;
     }
+    public GlobalSettings GetGlobalSettings()
+    {
+        return globalSettings;
+    }
+    public PickupList GetPickupList()
+    {
+        return pickupList;
+    }
+
 }

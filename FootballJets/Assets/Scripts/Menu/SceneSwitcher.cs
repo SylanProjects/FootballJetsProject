@@ -8,6 +8,5 @@ public class SceneSwitcher : MonoBehaviour
     public void SceneSwitch()
     {
         SceneManager.LoadScene(1);
-        
     }
 }

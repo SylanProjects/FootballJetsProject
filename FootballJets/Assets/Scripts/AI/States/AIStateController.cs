@@ -5,7 +5,7 @@ using UnityEngine;
 public class AIStateController : MonoBehaviour
 {
     public AIController aIController;
-    
+    public AILineOfSight lineOfSight;
     public string name;
     
 }

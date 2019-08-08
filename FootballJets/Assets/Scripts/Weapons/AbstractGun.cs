@@ -32,6 +32,9 @@ public abstract class AbstractGun : MonoBehaviour, IGun
         {
             Delay();
         }
+
+        /* Check if this gun is being used and deactive if not.
+         */
         if (weapon.GetCurrentGun() == this)
         {
             this.gameObject.SetActive(true);
@@ -52,11 +55,8 @@ public abstract class AbstractGun : MonoBehaviour, IGun
          * Player can reload a gun before the amount of bullets in the magazine (availableAmmo)
          * reaches 0, therefore the first part takes care of that. 
          */
-        if (availableAmmo == magazineSize)
-        {
-            
-        }
-        else
+        
+        if (availableAmmo != magazineSize)
         {
             DelayFor(reloadDelayTime);
             reloading = true;
@@ -99,6 +99,7 @@ public abstract class AbstractGun : MonoBehaviour, IGun
         }
         else if(availableAmmo == 0 && ammo > 0)
         {
+            // Automatic reload.
             Reload();
             Shoot();
         } 

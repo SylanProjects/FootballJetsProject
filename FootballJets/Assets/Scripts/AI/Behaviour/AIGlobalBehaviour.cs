@@ -56,7 +56,7 @@ public static class AIGlobalBehaviour
         else
         {
             AIMovementBehaviour.LookAt(player, player.transform.position.x, player.GetComponent<PlayerController>().globalSettings.stateBoundary);
-            AIBasicBehaviour.UseGun(player);
+            AIBasicBehaviour.UseSword(player);
             
         }
     }
