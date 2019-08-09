@@ -31,9 +31,29 @@ public class AIDefendState : AIState
          * 
          */
         int position = AIHelperMethods.GetPositionStatus(player, opponent, ball, goal);
+        switch (position)
+        {
+            case -1:
+                RunDefault();
+                break;
+            case 0:
+                RunZeroPosition();
+                break;
+            case 1:
+                RunOnePosition();
+                break;
+            case 2:
+                RunTwoPosition();
+                break;
+            case 3:
+                RunThreePosition();
+                break;
+        }
+
+
         AIHelperMethods.ChooseRunMethod(this, position);
 
-        debug.text = CheckIfFarFromBall() + "  balLSpotted: " + aIController.lineOfSight.CheckIfBallSpotted();
+        debug.text = "Pickup: " + GetClosestPickup().ToString();
         //debug.text = "pos: " + AIHelperMethods.GetPositionStatus(player, opponent, ball, goal);
     }
 
@@ -43,11 +63,18 @@ public class AIDefendState : AIState
          */
         if (CheckIfFarFromBall())
         {
+            AIMovementBehaviour.LookAt(player, ball);
+            AIBasicBehaviour.UseGun(player);
+            AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
 
         }
         else
         {
-
+            if (CheckIfBallApproaching())
+            {
+                AIBasicBehaviour.UseShield(player);
+            }
+            AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
         }
     }
     public new void RunOnePosition()
@@ -56,11 +83,11 @@ public class AIDefendState : AIState
          */
         if (CheckIfFarFromBall())
         {
-
+            AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
         }
         else
         {
-
+            AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
         }
     }
     public new void RunTwoPosition()
@@ -69,25 +96,22 @@ public class AIDefendState : AIState
          */
         if (CheckIfFarFromBall())
         {
-
+            AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
         }
         else
         {
-
+            if (CheckIfBallApproaching())
+            {
+                AIBasicBehaviour.UseShield(player);
+            }
+            AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
         }
     }
     public new void RunThreePosition()
     {
         /* OGoal | Player, AI | Ball | AIGoal
          */
-        if (CheckIfFarFromBall())
-        {
-
-        }
-        else
-        {
-
-        }
+        AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
     }
 
 }

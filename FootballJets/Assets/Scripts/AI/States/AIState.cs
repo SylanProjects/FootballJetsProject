@@ -22,33 +22,21 @@ public abstract class AIState : MonoBehaviour
         opponent = stateController.aIController.GetOpponent();
         aIController = stateController.aIController;
     }
-    public void Update()
-    {
-        
-    }
+   
     private void GetState()
     {
         stateController = this.gameObject.GetComponent<AIStateController>();
     }
-    public void Run()
+    public void Run(){}
+    public void RunZeroPosition(){}
+    public void RunOnePosition(){}
+    public void RunTwoPosition(){}
+    public void RunThreePosition(){}
+    public void RunDefault()
     {
-
-    }
-    public void RunZeroPosition()
-    {
-
-    }
-    public void RunOnePosition()
-    {
-
-    }
-    public void RunTwoPosition()
-    {
-
-    }
-    public void RunThreePosition()
-    {
-
+        /* If everything else fails, run to the ball and use the sword to shoot the ball at the goal.
+         */
+        AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
     }
     public bool CheckIfCloseToPickup()
     {
@@ -65,21 +53,38 @@ public abstract class AIState : MonoBehaviour
     }
     public Vector2 GetClosestPickup()
     {
-        PickupActivator closestPickup = new PickupActivator();
-        float closestDistance = 0;
-        foreach (PickupActivator pickup in aIController.GetPickupList().GetActivePickups())
+        /* This method checks if there are any active pickups in the game by getting an active pickup list
+         * from the main pickup list controller. Then it checks which one is the closest 
+         * and returns its position as a vector. 
+         */
+        PickupActivator closestPickup = null;
+        float closestDistance = 100;
+        List<PickupActivator> activePickups = aIController.GetPickupList().GetActivePickups();
+
+        int activeCount = aIController.GetPickupList().GetActiveCount();
+        if (activeCount > 0)
         {
-            float distance = AICalculate.CalculateLengthBetween(player, pickup.GetComponent<Transform>().position.x, pickup.GetComponent<Transform>().position.y);
-            if (distance < closestDistance)
+            for (int i = 0; i < activeCount; i++)
             {
-                closestDistance = distance;
-                closestPickup = pickup;
-            }
+                float distance = AICalculate.CalculateLengthBetween(player, activePickups[i].GetComponent<Transform>().position.x, activePickups[i].GetComponent<Transform>().position.y);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestPickup = activePickups[i];
+                }
+            }   
+        }
+
+        if (closestPickup == null)
+        {
+            return new Vector2(0, 0);
         }
         return new Vector2(closestPickup.GetComponent<Transform>().position.x, closestPickup.GetComponent<Transform>().position.y);
     }
     public bool CheckIfFarFromBall()
     {
+        // Returns bool depending on the distance from the player to the ball. 
+         
         float distanceFromBall = AICalculate.CalculateLengthBetween(player, ball);
         if (distanceFromBall > aIController.GetGlobalSettings().allowableDistanceFromBall)
         {
@@ -90,7 +95,7 @@ public abstract class AIState : MonoBehaviour
     public bool CheckIfCloseToOpponent()
     {
         float distanceFromBall = AICalculate.CalculateLengthBetween(player, opponent);
-        if (distanceFromBall < 1)
+        if (distanceFromBall < 2)
         {
             return true;
         }
@@ -98,7 +103,7 @@ public abstract class AIState : MonoBehaviour
     }
     public bool CheckOpponentsHealth()
     {
-        // This methods checks if oppoent has low health
+        // This methods checks if opponent has low health
         if (opponent.GetComponent<Stats>().GetHealthStatus() < 20)
         {
             return true;

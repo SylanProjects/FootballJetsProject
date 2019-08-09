@@ -15,10 +15,29 @@ public class AIAttackState : AIState
          * 
          */
         int position = AIHelperMethods.GetPositionStatus(player, opponent, ball, goal);
+        switch (position)
+        {
+            case -1:
+                RunDefault();
+                break;
+            case 0:
+                RunZeroPosition();
+                break;
+            case 1:
+                RunOnePosition();
+                break;
+            case 2:
+                RunTwoPosition();
+                break;
+            case 3:
+                RunThreePosition();
+                break;
+        }
+
         AIHelperMethods.ChooseRunMethod(this, position);
 
 
-        debug.text = CheckIfFarFromBall() + "  balLSpotted: " + aIController.lineOfSight.CheckIfBallSpotted();
+        debug.text = "Pickup: " + GetClosestPickup().ToString();
 
     }
     public new void RunZeroPosition()
@@ -28,16 +47,21 @@ public class AIAttackState : AIState
         if (CheckIfFarFromBall())
         {
             // If close to a pickup - move towards it
-            if (CheckIfCloseToPickup())
-            {
-                AIMovementBehaviour.LookAt(player, GetClosestPickup());
-                AIMovementBehaviour.MoveForward(player);
-            }
-            else if (aIController.lineOfSight.CheckIfBallSpotted())
+            
+            if (aIController.lineOfSight.CheckIfBallSpotted())
             {
                 AIMovementBehaviour.LookAt(player, ball);
                 AIBasicBehaviour.UseGun(player);
                 AIMovementBehaviour.MoveTowards(player, ball);
+            }
+            else if (CheckIfCloseToPickup())
+            {
+                AIMovementBehaviour.LookAt(player, GetClosestPickup());
+                AIMovementBehaviour.MoveForward(player);
+            }
+            else
+            {
+                AIGlobalBehaviour.PositionAndShoot(player, ball, aIController.lineOfSight.GetAvailablePoint());
             }
         }
         else
@@ -48,7 +72,7 @@ public class AIAttackState : AIState
             }
             else
             {
-                AIGlobalBehaviour.ShootAtGoal(player, ball, aIController.lineOfSight.GetAvailablePoint());
+                AIGlobalBehaviour.PositionAndShoot(player, ball, aIController.lineOfSight.GetAvailablePoint());
             }
         }
     }
@@ -72,7 +96,7 @@ public class AIAttackState : AIState
         }
         else
         {
-            AIGlobalBehaviour.ShootAtGoal(player, ball, goal);
+            AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
         }
     }
     public new void RunTwoPosition()
@@ -106,15 +130,14 @@ public class AIAttackState : AIState
             {
                 AIBasicBehaviour.UseShield(player);
             }
-            AIMovementBehaviour.LookAt(player, opponent);
-            AIBasicBehaviour.UseGun(player);
-            AIMovementBehaviour.MoveTowards(player, ball);
+            AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
         }
     }
     public new void RunThreePosition()
     {
         /* OGoal | Player, AI | Ball | AIGoal
          */
+         
         if (CheckIfFarFromBall())
         {
             if (CheckIfCloseToOpponent())
@@ -131,13 +154,13 @@ public class AIAttackState : AIState
             }
             else
             {
-                AIGlobalBehaviour.ShootAtGoal(player, ball, goal);
+                AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
             }
         }
         else
         {
             // Move towards the ball as fast as possible.
-            AIGlobalBehaviour.ShootAtGoal(player, ball, goal);
+            AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
         }
     }
 

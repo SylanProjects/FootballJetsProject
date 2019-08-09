@@ -15,28 +15,36 @@ public class AIShootState : AIState
          * easily. First calculate the point where the ball cannot
          * be shot at the goal, and then push it back to the middle. 
          * If the ball is ready, shoot it at the goal. 
-         * TODO
-         * If the player is far from the ball, he can shoot it with a gun
-         * to push it into the goal. 
          */
 
-        if (aIController.lineOfSight.CheckIfWallSpotted())
-        {
-            
-            AIGlobalBehaviour.ShootInTheMiddle(player, ball, goal);
-        }
-        else
-        {
-            AIGlobalBehaviour.ShootAtGoal(player, ball, aIController.lineOfSight.GetAvailablePoint());
-        }
+        
 
         int position = AIHelperMethods.GetPositionStatus(player, opponent, ball, goal);
+        switch (position)
+        {
+            case -1:
+                RunDefault();
+                break;
+            case 0:
+                RunZeroPosition();
+                break;
+            case 1:
+                RunOnePosition();
+                break;
+            case 2:
+                RunTwoPosition();
+                break;
+            case 3:
+                RunThreePosition();
+                break;
+        }
+
 
         AIHelperMethods.ChooseRunMethod(this, position);
 
 
         //debug.text = "pos: " + AIHelperMethods.GetPositionStatus(player, opponent, ball, goal);
-        debug.text = CheckIfFarFromBall() + "  balLSpotted: " + aIController.lineOfSight.CheckIfBallSpotted();
+        debug.text = "Pickup: " + GetClosestPickup().ToString();
 
     }
     public new void RunZeroPosition()
@@ -45,12 +53,22 @@ public class AIShootState : AIState
          */
         if (CheckIfFarFromBall())
         {
-
+            if (aIController.lineOfSight.CheckIfBallSpotted())
+            {
+                AIMovementBehaviour.LookAt(player, ball);
+                AIBasicBehaviour.UseGun(player);
+            }
+            
+        }
+        if (aIController.lineOfSight.CheckIfWallSpotted())
+        {
+            AIGlobalBehaviour.ShootInTheMiddle(player, ball, goal);
         }
         else
         {
-
+            AIGlobalBehaviour.PositionAndShoot(player, ball, aIController.lineOfSight.GetAvailablePoint());
         }
+
     }
     public new void RunOnePosition()
     {
@@ -58,11 +76,25 @@ public class AIShootState : AIState
          */
         if (CheckIfFarFromBall())
         {
+            if (CheckOpponentsHealth())
+            {
+                AIMovementBehaviour.LookAt(player, opponent);
+                AIBasicBehaviour.UseGun(player);
+            }
+            else if (CheckIfCloseToPickup())
+            {
+                AIMovementBehaviour.LookAt(player, GetClosestPickup());
+                AIMovementBehaviour.MoveForward(player);
+            }
+            else
+            {
+                AIGlobalBehaviour.PositionAndShoot(player, ball, aIController.lineOfSight.GetAvailablePoint());
+            }
 
         }
         else
         {
-
+            AIGlobalBehaviour.PositionAndShoot(player, ball, aIController.lineOfSight.GetAvailablePoint());
         }
     }
     public new void RunTwoPosition()
@@ -71,24 +103,31 @@ public class AIShootState : AIState
          */
         if (CheckIfFarFromBall())
         {
-
+            if (aIController.lineOfSight.CheckIfBallSpotted())
+            {
+                AIMovementBehaviour.LookAt(player, ball);
+                AIBasicBehaviour.UseGun(player);
+                AIMovementBehaviour.MoveTowards(player, ball);
+            } 
+            else
+            {
+                AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
+            }
         }
         else
         {
-
+            if (CheckIfBallApproaching())
+            {
+                AIBasicBehaviour.UseShield(player);
+            }
+            AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
         }
     }
     public new void RunThreePosition()
     {
         /* OGoal | Player, AI | Ball | AIGoal
          */
-        if (CheckIfFarFromBall())
-        {
+        AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
 
-        }
-        else
-        {
-
-        }
     }
 }

@@ -38,6 +38,11 @@ public class PickupList : MonoBehaviour
         return this.pickupList.Count;
         
     }
+    public int GetActiveCount()
+    {
+        return this.activeList.Count;
+
+    }
     public List<PickupActivator> GetActivePickups()
     {
         return this.activeList;

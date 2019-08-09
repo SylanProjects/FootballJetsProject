@@ -8,6 +8,7 @@ public static class AIHelperMethods
     {
         /* This method chooses the right method based on the position of the players.
          */
+        state.RunZeroPosition();
         switch (position)
         {
             case 0:
@@ -58,13 +59,14 @@ public static class AIHelperMethods
         bool ballIsOnTheLeftToPlayerAndAI = !playerIsOnTheLeftToBall && !aiIsOnTheLeftToBall;
         bool ballIsOnTheRightToPlayerAndAI = playerIsOnTheLeftToBall && aiIsOnTheLeftToBall;
 
+        // 0
         bool zeroPosition = (goalIsOnTheLeft & ballIsOnTheLeftToPlayerAndAI) || (!goalIsOnTheLeft & ballIsOnTheRightToPlayerAndAI);
 
         if (zeroPosition)
         {
             return 0;
         }
-
+        // 1
         bool ballIsBetweenPlayerAndAI = (aiIsOnTheLeftToBall & !playerIsOnTheLeftToBall) || (!aiIsOnTheLeftToBall & playerIsOnTheLeftToBall);
         bool onePosition = ballIsBetweenPlayerAndAI & ((goalIsOnTheLeft & aiIsOnTheLeftToBall) || (!goalIsOnTheLeft & playerIsOnTheLeftToBall));
 
@@ -72,14 +74,14 @@ public static class AIHelperMethods
         {
             return 1;
         }
-
+        // 2
         bool twoPosition = ballIsBetweenPlayerAndAI & ((goalIsOnTheLeft & playerIsOnTheLeftToBall) || (!goalIsOnTheLeft & aiIsOnTheLeftToBall));
 
         if (twoPosition)
         {
             return 2;
         }
-
+        // 3
         bool threePosition = !zeroPosition;
 
         if (threePosition)

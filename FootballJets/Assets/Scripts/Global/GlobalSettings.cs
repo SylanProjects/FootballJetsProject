@@ -32,7 +32,7 @@ public class GlobalSettings : MonoBehaviour
 
     // AI
     public float stateBoundary = 12;
-    public int allowableDistanceFromBall = 15;
+    public int allowableDistanceFromBall = 10;
 
 
 

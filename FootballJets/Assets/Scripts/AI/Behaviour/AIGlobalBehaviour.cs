@@ -24,9 +24,10 @@ public static class AIGlobalBehaviour
     
     
     
-    public static void ShootAtGoal(GameObject player, GameObject ball, GameObject goal)
+    public static void PositionAndShoot(GameObject player, GameObject ball, GameObject goal)
     {
-        /* First a position of the goal is found, then player is rotated to face the ball. 
+        /* Should be used as the default behaviour.
+         * First a position of the goal is found, then player is rotated to face the ball. 
          * Next check how far the player is from the point from which he would be able to shoot 
          * the ball into the goal. Then either move closer to that position or use a sword.
          */
