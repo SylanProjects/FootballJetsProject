@@ -28,7 +28,11 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             Destroy(gameObject);
-        }   
+        }
+        if (collision.gameObject.CompareTag("LeftGoal") || collision.gameObject.CompareTag("RightGoal"))
+        {
+            Destroy(gameObject);
+        }
     }
     void Bounce(Collider2D collision)
     {
