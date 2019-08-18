@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class AIDefendState : AIState
 {
-
-    public Text debug;
     public new void Run()
     {
 
@@ -53,8 +51,6 @@ public class AIDefendState : AIState
 
         AIHelperMethods.ChooseRunMethod(this, position);
 
-        debug.text = "Pickup: " + GetClosestPickup().ToString();
-        //debug.text = "pos: " + AIHelperMethods.GetPositionStatus(player, opponent, ball, goal);
     }
 
     public new void RunZeroPosition()

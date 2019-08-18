@@ -8,6 +8,7 @@ public abstract class AIState : MonoBehaviour
     /* Base class that each state extends, not necessarily needed
      * but helps in reading and understanding the code.
      */
+     
     protected AIStateController stateController;
     protected GameObject player, ball, goal, opponent;
     protected AIController aIController;

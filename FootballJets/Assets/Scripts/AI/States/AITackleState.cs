@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class AITackleState : AIState
 {
-    public Text debug;
     public new void Run()
     {
         int position = AIHelperMethods.GetPositionStatus(player, opponent, ball, goal);
@@ -30,8 +29,6 @@ public class AITackleState : AIState
 
         AIHelperMethods.ChooseRunMethod(this, position);
 
-        debug.text = "Pickup: " + GetClosestPickup().ToString();
-        //debug.text = "pos: " + AIHelperMethods.GetPositionStatus(player, opponent, ball, goal);
     }
     public new void RunZeroPosition()
     {

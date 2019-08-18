@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class AIAttackState : AIState
 {
-    
-    public Text debug;
+
     public new void Run()
     {
 
@@ -14,6 +13,8 @@ public class AIAttackState : AIState
          * There are four positions that the ball and the players can be in. 
          * 
          */
+       
+
         int position = AIHelperMethods.GetPositionStatus(player, opponent, ball, goal);
         switch (position)
         {
@@ -36,8 +37,6 @@ public class AIAttackState : AIState
 
         AIHelperMethods.ChooseRunMethod(this, position);
 
-
-        debug.text = "Pickup: " + GetClosestPickup().ToString();
 
     }
     public new void RunZeroPosition()

@@ -5,10 +5,7 @@ using UnityEngine.UI;
 
 public class AIShootState : AIState
 {
-    public Text debug;
-
-    
-    
+   
     public new void Run()
     {
         /* If the ball is in the corner, move it in the middle so a shot can be taken 
@@ -42,9 +39,6 @@ public class AIShootState : AIState
 
         AIHelperMethods.ChooseRunMethod(this, position);
 
-
-        //debug.text = "pos: " + AIHelperMethods.GetPositionStatus(player, opponent, ball, goal);
-        debug.text = "Pickup: " + GetClosestPickup().ToString();
 
     }
     public new void RunZeroPosition()
