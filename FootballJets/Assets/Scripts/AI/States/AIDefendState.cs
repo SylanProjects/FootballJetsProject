@@ -48,17 +48,15 @@ public class AIDefendState : AIState
                 break;
         }
 
-
-        AIHelperMethods.ChooseRunMethod(this, position);
-
     }
 
     public new void RunZeroPosition()
     {
         /* OGoal | Ball | Player, AI | AIGoal
          */
-        if (CheckIfFarFromBall())
+        if (AICheckBehaviour.FarFromBall(player, ball))
         {
+            AIBasicBehaviour.Sprint(player, 1);
             AIMovementBehaviour.LookAt(player, ball);
             AIBasicBehaviour.UseGun(player);
             AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
@@ -77,7 +75,7 @@ public class AIDefendState : AIState
     {
         /* OGoal | AI | Ball | Player | AIGoal
          */
-        if (CheckIfFarFromBall())
+        if (AICheckBehaviour.FarFromBall(player, ball))
         {
             AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
         }
@@ -90,8 +88,9 @@ public class AIDefendState : AIState
     {
         /* OGoal | Player | Ball | AI | AIGoal
          */
-        if (CheckIfFarFromBall())
+        if (AICheckBehaviour.FarFromBall(player, ball))
         {
+            AIBasicBehaviour.Sprint(player, 1);
             AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
         }
         else
@@ -107,6 +106,7 @@ public class AIDefendState : AIState
     {
         /* OGoal | Player, AI | Ball | AIGoal
          */
+        AIBasicBehaviour.Sprint(player, 1);
         AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
     }
 

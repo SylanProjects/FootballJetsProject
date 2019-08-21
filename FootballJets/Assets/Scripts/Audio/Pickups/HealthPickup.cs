@@ -11,7 +11,8 @@ public class HealthPickup : IPickupEffect
             throw new System.ArgumentNullException();
         }
         else {
-            gameObject.GetComponent<Stats>().AddHealth(50);
+            gameObject.GetComponent<Stats>().AddHealth(Random.Range(20, 50));
         }
     }
 }
+ 

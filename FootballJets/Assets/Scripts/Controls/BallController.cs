@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class BallController : MonoBehaviour
 {
-    public PlayerController player1;
-    public PlayerController player2; 
+    //public PlayerController player1;
+    //public PlayerController player2; 
+    private GameObject redTeam, blueTeam;
     
-    public Text scoreText;
+   // public Text scoreText;
     public Rigidbody2D rb;
-    public Stats player1Stats;
-    public Stats player2Stats;
+    //public Stats player1Stats;
+    //public Stats player2Stats;
     
 
 
@@ -20,14 +21,16 @@ public class BallController : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        
+        rb.mass = GameStartSettings.ballWeight;
+        redTeam = GameObject.Find("RedTeam");
+        blueTeam = GameObject.Find("BlueTeam");
     }
 
     void Update()
     {
         if (Input.GetButton("Reset"))
         {
-            SetPlayerPositions();
+            ResetPlayers();
         }
     }
     private void OnTriggerEnter2D(Collider2D other)
@@ -35,26 +38,26 @@ public class BallController : MonoBehaviour
         if (other.gameObject.CompareTag("LeftGoal"))
         {
 
-            player2.team.AddGoal(1);
-            SetPlayerPositions();
+            redTeam.GetComponent<TeamController>().AddPoint(1);
+            ResetPlayers();
             
         }
         if (other.gameObject.CompareTag("RightGoal"))
         {
             
-            player1.team.AddGoal(1);
-            SetPlayerPositions();
+            blueTeam.GetComponent<TeamController>().AddPoint(1);
+            ResetPlayers();
            
 
         }
     }
     
-    void SetPlayerPositions()
+    void ResetPlayers()
     {   
         this.transform.position = new Vector2(0, 0);
         rb2d.velocity = new Vector2(0, 0);
-        player1.ResetPosition();
-        player2.ResetPosition();
+        redTeam.GetComponent<TeamController>().ResetPlayers();
+        blueTeam.GetComponent<TeamController>().ResetPlayers();
     }
 
     public void Bounce()

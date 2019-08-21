@@ -12,38 +12,32 @@ public class Stats : MonoBehaviour
     private float stamina;
     private float shield;
 
-
-
     public void Start()
     {
-        health = player.globalSettings.health;
-        stamina = player.globalSettings.stamina;
+        health = GameStartSettings.health;
+        stamina = GameStartSettings.stamina;
         shield = 0;
         weapon.weaponList.Start();
-        weapon.weaponList.AddAmmo("Pistol", player.globalSettings.pistolAmmo);
-        weapon.weaponList.AddAmmo("MachineGun", player.globalSettings.machineGunAmmo);
+        weapon.weaponList.AddAmmo("Pistol", GameStartSettings.pistolAmmo);
+        weapon.weaponList.AddAmmo("MachineGun", GameStartSettings.machineGunAmmo);
 
     }
-
-    
-   
     public void Update()
     {
-        
         ReplenishHealth();
-
     }
     public void ReplenishHealth()
     {
-        if (health >= 100f)
+        if (health >= GameStartSettings.health)
         {
-            health = 100f;
+            health = GameStartSettings.health;
         }
         else if (health < 0f)
         {
             // This means character is dead
+            player.team.AddPointToOpponentTeam(1);
             player.ResetPosition();
-            health = 100f;
+            health = GameStartSettings.health;
         }
         else
         {
@@ -55,9 +49,9 @@ public class Stats : MonoBehaviour
     {
         
         this.health += amount;
-        if (this.health > 100)
+        if (this.health > GameStartSettings.health)
         {
-            this.health = 100;
+            this.health = GameStartSettings.health;
         }
     }
     
@@ -89,4 +83,5 @@ public class Stats : MonoBehaviour
     {
         this.stamina = amount;
     }
+    
 }

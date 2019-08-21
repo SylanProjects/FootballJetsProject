@@ -14,7 +14,7 @@ public class Shield : MonoBehaviour
         {
             shield.transform.gameObject.SetActive(true);
             player.stats.AddShield(-4);
-            float size = (player.stats.GetShieldStatus() / 100) * 4f;
+            float size = (player.stats.GetShieldStatus() / 100) * 4f * GameStartSettings.shieldSize;
             shield.transform.localScale = new Vector2(0.25f, size);
         }
         if (player.stats.GetShieldStatus() < 1)

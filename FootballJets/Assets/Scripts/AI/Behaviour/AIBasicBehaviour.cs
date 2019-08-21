@@ -24,15 +24,19 @@ public static class AIBasicBehaviour
     }
     public static void UseGun(GameObject player)
     {
+        if (CheckAmmo(player) < 1)
+        {
+            NextGun(player);
+        }
         GetController(player).Shoot();
     }
     public static void Reload(GameObject player)
     {
         GetController(player).Reload();
     }
-    public static void Sprint(GameObject player)
+    public static void Sprint(GameObject player, int s)
     {
-        // change the value of sprint to 1
+        player.GetComponent<PlayerController>().Sprint(s* -1);
     }
     public static void SetGun(GameObject player, string gunName)
     {
@@ -41,5 +45,9 @@ public static class AIBasicBehaviour
     public static void NextGun(GameObject player)
     {
         GetController(player).NextGun();
+    }
+    public static int CheckAmmo(GameObject player)
+    {
+        return GetController(player).weapon.GetCurrentGunAmmo();
     }
 }

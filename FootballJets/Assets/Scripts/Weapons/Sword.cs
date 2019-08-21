@@ -29,9 +29,10 @@ public class Sword : MonoBehaviour
     }
     public void UseSword()
     {
-        if (!playerController.busyState.GetState())
+        float stamina = playerController.stats.GetStaminaStatus();
+        if (!playerController.busyState.GetState() && stamina > 5)
         {
-
+            playerController.stats.AddStamina(-5);
             weapon.ShowCurrentWeapon(false);
             swordSprite.gameObject.SetActive(true);
             playerController.body.Pullback(0.4f);
@@ -79,8 +80,9 @@ public class Sword : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Player"))
         {
-            Bounce(collision, 200);
-            collision.gameObject.GetComponent<PlayerController>().GetHit(5);
+            //Bounce(collision, 200);
+            int swordAttackStrength = playerController.globalSettings.swordAttackStrength;
+            collision.gameObject.GetComponent<PlayerController>().GetHit(Random.Range(swordAttackStrength - 8, swordAttackStrength + 3));
         }
     }
     void Bounce(Collider2D collision, float strength)

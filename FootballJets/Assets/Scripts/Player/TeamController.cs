@@ -8,12 +8,17 @@ public class TeamController : MonoBehaviour
     public GameObject player1, player2, player3;
     public GameObject opponentGoal;
     public int stateBoundary = 12;
+    public TeamController opponentTeam;
     private int score = 0;
     
 
-    public void AddGoal(int s)
+    public void AddPoint(int points)
     {
-        score += s;
+        score += points;
+    }
+    public void AddPointToOpponentTeam(int points)
+    {
+        opponentTeam.AddPoint(points);
     }
     public int GetScore()
     {
@@ -22,5 +27,10 @@ public class TeamController : MonoBehaviour
     public int GetStateBoundary()
     {
         return stateBoundary;
+    }
+    public void ResetPlayers()
+    {
+        player1.GetComponent<PlayerController>().ResetPosition();
+        player1.GetComponent<PlayerController>().ResetHealth();
     }
 }

@@ -48,5 +48,9 @@ public class Weapon : MonoBehaviour
     {
         currentGun.Reload();
     }
+    public int GetCurrentGunAmmo()
+    {
+        return currentGun.GetAmmo();
+    }
     
 }

@@ -37,15 +37,12 @@ public class AIShootState : AIState
         }
 
 
-        AIHelperMethods.ChooseRunMethod(this, position);
-
-
     }
     public new void RunZeroPosition()
     {
         /* OGoal | Ball | Player, AI | AIGoal
          */
-        if (CheckIfFarFromBall())
+        if (AICheckBehaviour.FarFromBall(player, ball))
         {
             if (aIController.lineOfSight.CheckIfBallSpotted())
             {
@@ -68,7 +65,7 @@ public class AIShootState : AIState
     {
         /* OGoal | AI | Ball | Player | AIGoal
          */
-        if (CheckIfFarFromBall())
+        if (AICheckBehaviour.FarFromBall(player, ball))
         {
             if (CheckOpponentsHealth())
             {
@@ -95,8 +92,9 @@ public class AIShootState : AIState
     {
         /* OGoal | Player | Ball | AI | AIGoal
          */
-        if (CheckIfFarFromBall())
+        if (AICheckBehaviour.FarFromBall(player, ball))
         {
+            AIBasicBehaviour.Sprint(player, 1);
             if (aIController.lineOfSight.CheckIfBallSpotted())
             {
                 AIMovementBehaviour.LookAt(player, ball);
@@ -121,6 +119,7 @@ public class AIShootState : AIState
     {
         /* OGoal | Player, AI | Ball | AIGoal
          */
+        AIBasicBehaviour.Sprint(player, 1);
         AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
 
     }

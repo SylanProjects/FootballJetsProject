@@ -27,15 +27,14 @@ public class AITackleState : AIState
                 break;
         }
 
-        AIHelperMethods.ChooseRunMethod(this, position);
-
     }
     public new void RunZeroPosition()
     {
         /* OGoal | Ball | Player, AI | AIGoal
          */
-        if (CheckIfFarFromBall())
+        if (AICheckBehaviour.FarFromBall(player, ball))
         {
+            AIBasicBehaviour.Sprint(player, 1);
             if (aIController.lineOfSight.CheckIfBallSpotted())
             {
                 AIMovementBehaviour.LookAt(player, ball);
@@ -71,7 +70,7 @@ public class AITackleState : AIState
     {
         /* OGoal | AI | Ball | Player | AIGoal
          */
-        if (CheckIfFarFromBall())
+        if (AICheckBehaviour.FarFromBall(player, ball))
         {
             if (CheckIfCloseToPickup())
             {
@@ -89,8 +88,9 @@ public class AITackleState : AIState
     {
         /* OGoal | Player | Ball | AI | AIGoal
          */
-        if (CheckIfFarFromBall())
+        if (AICheckBehaviour.FarFromBall(player, ball))
         {
+            AIBasicBehaviour.Sprint(player, 1);
             AIMovementBehaviour.LookAt(player, ball);
             AIBasicBehaviour.UseGun(player);
             AIMovementBehaviour.MoveTowards(player, ball);
@@ -111,13 +111,14 @@ public class AITackleState : AIState
         /* OGoal | Player, AI | Ball | AIGoal
          */
          
-        if (CheckIfFarFromBall())
+        if (AICheckBehaviour.FarFromBall(player, ball))
         {
             if (CheckIfCloseToOpponent())
             {
                 AIMovementBehaviour.LookAt(player, opponent);
                 AIBasicBehaviour.UseSword(player);
             }
+            AIBasicBehaviour.Sprint(player, 1);
             AIMovementBehaviour.LookAt(player, opponent);
             AIBasicBehaviour.UseGun(player);
             AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
@@ -125,6 +126,7 @@ public class AITackleState : AIState
         }
         else
         {
+            AIBasicBehaviour.Sprint(player, 1);
             AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
 
         }

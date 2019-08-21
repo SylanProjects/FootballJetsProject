@@ -64,11 +64,14 @@
     <Compile Include="Assets\_Completed-Assets\Scripts\CompleteCameraController.cs" />
     <Compile Include="Assets\_Completed-Assets\Scripts\CompletePlayerController.cs" />
     <Compile Include="Assets\_Completed-Assets\Scripts\CompleteRotator.cs" />
+    <Compile Include="Assets\BallSizeControl.cs" />
+    <Compile Include="Assets\GameController.cs" />
     <Compile Include="Assets\Scripts\AI\AIController.cs" />
     <Compile Include="Assets\Scripts\AI\AILineOfSight.cs" />
     <Compile Include="Assets\Scripts\AI\AIUserInterface.cs" />
     <Compile Include="Assets\Scripts\AI\Behaviour\AIBasicBehaviour.cs" />
     <Compile Include="Assets\Scripts\AI\Behaviour\AICalculate.cs" />
+    <Compile Include="Assets\Scripts\AI\Behaviour\AICheckBehaviour.cs" />
     <Compile Include="Assets\Scripts\AI\Behaviour\AIDirectionBehaviour.cs" />
     <Compile Include="Assets\Scripts\AI\Behaviour\AIGlobalBehaviour.cs" />
     <Compile Include="Assets\Scripts\AI\Behaviour\AIHelperMethods.cs" />
@@ -94,6 +97,8 @@
     <Compile Include="Assets\Scripts\Controls\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Controls\PlayerRotator.cs" />
     <Compile Include="Assets\Scripts\Controls\StateController.cs" />
+    <Compile Include="Assets\Scripts\GameStatus.cs" />
+    <Compile Include="Assets\Scripts\Global\GameStartSettings.cs" />
     <Compile Include="Assets\Scripts\Global\GlobalSettings.cs" />
     <Compile Include="Assets\Scripts\HelperObjects\BusyState.cs" />
     <Compile Include="Assets\Scripts\HelperObjects\CoordinatePair.cs" />
@@ -128,8 +133,10 @@
     <Compile Include="Assets\Scripts\Weapons\SwordSprite.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponList.cs" />
+    <Compile Include="Assets\StartSettings.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\TutorialInfo.cs" />
     <Compile Include="Assets\Wall.cs" />
+    <Compile Include="Assets\WinGameController.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

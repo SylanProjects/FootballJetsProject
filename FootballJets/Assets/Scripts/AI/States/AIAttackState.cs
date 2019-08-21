@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class AIAttackState : AIState
 {
-
+    
     public new void Run()
     {
 
@@ -13,8 +13,8 @@ public class AIAttackState : AIState
          * There are four positions that the ball and the players can be in. 
          * 
          */
-       
 
+        
         int position = AIHelperMethods.GetPositionStatus(player, opponent, ball, goal);
         switch (position)
         {
@@ -35,15 +35,25 @@ public class AIAttackState : AIState
                 break;
         }
 
-        AIHelperMethods.ChooseRunMethod(this, position);
-
-
     }
     public new void RunZeroPosition()
     {
         /* OGoal | Ball | Player, AI | AIGoal
          */
-        if (CheckIfFarFromBall())
+
+
+        if (AICheckBehaviour.FarFromBall(player, ball))
+        { // If far from ball
+            if (aIController.lineOfSight.CheckIfWallSpotted())
+            {
+                AIGlobalBehaviour.ShootInTheMiddle(player, ball, goal);
+            }
+            else
+            {
+                AIGlobalBehaviour.PositionAndShoot(player, ball, aIController.lineOfSight.GetAvailablePoint());
+            }
+        }
+        else
         {
             // If close to a pickup - move towards it
             
@@ -63,24 +73,15 @@ public class AIAttackState : AIState
                 AIGlobalBehaviour.PositionAndShoot(player, ball, aIController.lineOfSight.GetAvailablePoint());
             }
         }
-        else
-        {
-            if (aIController.lineOfSight.CheckIfWallSpotted())
-            {
-                AIGlobalBehaviour.ShootInTheMiddle(player, ball, goal);
-            }
-            else
-            {
-                AIGlobalBehaviour.PositionAndShoot(player, ball, aIController.lineOfSight.GetAvailablePoint());
-            }
-        }
+        
     }
     public new void RunOnePosition()
     {
         /* OGoal | AI | Ball | Player | AIGoal
          */
-        if (CheckIfFarFromBall())
+        if (AICheckBehaviour.FarFromBall(player, ball))
         {
+            AIBasicBehaviour.Sprint(player, 1);
             if (CheckIfCloseToPickup())
             {
                 AIMovementBehaviour.LookAt(player, GetClosestPickup());
@@ -95,6 +96,7 @@ public class AIAttackState : AIState
         }
         else
         {
+            AIBasicBehaviour.Sprint(player, 1);
             AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
         }
     }
@@ -102,7 +104,7 @@ public class AIAttackState : AIState
     {
         /* OGoal | Player | Ball | AI | AIGoal
          */
-        if (CheckIfFarFromBall())
+        if (AICheckBehaviour.FarFromBall(player, ball))
         {
             if (CheckIfCloseToOpponent())
             {
@@ -137,8 +139,9 @@ public class AIAttackState : AIState
         /* OGoal | Player, AI | Ball | AIGoal
          */
          
-        if (CheckIfFarFromBall())
+        if (AICheckBehaviour.FarFromBall(player, ball))
         {
+            AIBasicBehaviour.Sprint(player, 1);
             if (CheckIfCloseToOpponent())
             {
                 AIMovementBehaviour.LookAt(player, opponent);
@@ -158,6 +161,7 @@ public class AIAttackState : AIState
         }
         else
         {
+            AIBasicBehaviour.Sprint(player, 1);
             // Move towards the ball as fast as possible.
             AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
         }

@@ -11,19 +11,22 @@ public class GlobalTimer : MonoBehaviour
     public Text timer;
     private float time;
 
-    public void Start()
-    {
-        time = 0;
-    }
-
     public void Update()
     {
-        time += Time.deltaTime;
+        time -= Time.deltaTime;
         timer.text = FormatTime();
     }
     public void ResetTime()
     {
         time = 0;
+    }
+    public float GetTime()
+    {
+        return time;
+    }
+    public void SetTime(float t)
+    {
+        time = t;
     }
     private string FormatTime()
     {

@@ -23,14 +23,16 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb2d;
     private PlayerController sprint;
     private bool sprinting;
+    private bool recharging;
 
 
     public void Start()
     {
         rb2d = GetComponent<Rigidbody2D> ();
-        defaultSpeed = globalSettings.speed;
-        speed = globalSettings.speed;
+        defaultSpeed = GameStartSettings.playerSpeed;
+        speed = GameStartSettings.playerSpeed;
         sprinting = false;
+        recharging = false;
 
     }
     public void FixedUpdate()
@@ -45,14 +47,16 @@ public class PlayerController : MonoBehaviour
             stats.AddStamina(globalSettings.staminaRecharge);
         }
 
-        if (stats.GetStaminaStatus() >= 100)
+        if (stats.GetStaminaStatus() >= GameStartSettings.stamina)
         {
-            stats.SetStamina(100);
+            stats.SetStamina(GameStartSettings.stamina);
+            recharging = false;
         }
         
         if (stats.GetStaminaStatus() < 0)
         {
             stats.SetStamina(0);
+            recharging = true;
         }  
     }
 
@@ -75,6 +79,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             movingHorizontal = true;
+
         }
 
         if (moveVertical < deadZone && moveVertical > -deadZone)
@@ -99,7 +104,7 @@ public class PlayerController : MonoBehaviour
          */
         if(sprint != 0)
         {
-            if (stats.GetStaminaStatus() > 0)
+            if (stats.GetStaminaStatus() > 0 && !recharging)
             {
                 SetSprintingStatus(true);
                 speed = defaultSpeed + (defaultSpeed * (globalSettings.sprintPower * (int)sprint) * -1);
@@ -145,5 +150,13 @@ public class PlayerController : MonoBehaviour
          */
         power *= Random.Range(0.3f, 1.5f);
         stats.AddHealth(-power);
+    }
+    public void ResetHealth()
+    {
+        stats.AddHealth(GameStartSettings.health);
+    }
+    public GlobalSettings GetGlobalSettings()
+    {
+        return this.globalSettings;
     }
 }
