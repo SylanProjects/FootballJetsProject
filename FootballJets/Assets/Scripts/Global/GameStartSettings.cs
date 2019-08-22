@@ -18,6 +18,7 @@ public static class GameStartSettings
     public static int playerSpeed = 1700;
 
 
-    public static int winningScore = 999;
+    public static int winningScore = 10;
+    public static float shieldDuration = 4;
 
 }

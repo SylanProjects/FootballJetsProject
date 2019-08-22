@@ -14,12 +14,13 @@ public class GameController : MonoBehaviour
     {
         
         timer.SetTime(GameStartSettings.gameTime);
-        for (int i = 0; i < GameStartSettings.ballAmount; i++)
+        for (int i = 1; i < GameStartSettings.ballAmount; i++)
         {
             Instantiate(ballPrefab);
         }
 
     }
+    
 
     
     public void ActivatePlayers(bool check)
@@ -27,4 +28,5 @@ public class GameController : MonoBehaviour
         redTeam.player1.SetActive(check);
         blueTeam.player1.SetActive(check);
     }
+    
 }

@@ -12,8 +12,18 @@ public class StartSettings : MonoBehaviour
     public Text pistolAmmoText;
     public Text machineGunAmmoText;
     public Text ballSizeText;
-    
-    
+
+    //TODO
+    public Text winningScoreText;
+    public Text shieldSizeText;
+    public Text ballAmountText;
+    public Text ballWeightText;
+    public Text playerSpeedText;
+    public Text blueTeamScore;
+    public Text redTeamScore;
+    public Text shieldDurationText;
+
+
     public void Update()
     {
         healthText.text =  "" + GameStartSettings.health;
@@ -26,7 +36,21 @@ public class StartSettings : MonoBehaviour
         TimeSpan timeSpan = TimeSpan.FromSeconds(GameStartSettings.gameTime);
         timeText.text = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
 
-    }
+
+        winningScoreText.text = "" + GameStartSettings.winningScore;
+        shieldSizeText.text = "" + GameStartSettings.shieldSize;
+        shieldDurationText.text = "" + GameStartSettings.shieldDuration;
+        ballWeightText.text = "" + GameStartSettings.ballWeight;
+        ballAmountText.text = "" + GameStartSettings.ballAmount;
+        
+        playerSpeedText.text = "" + GameStartSettings.playerSpeed;
+        blueTeamScore.text = "" + GameStatus.blueTeamScore;
+        redTeamScore.text = "" + GameStatus.redTeamScore;
+
+
+
+
+}
     
     public void AddHealth(int health)
     {
@@ -59,4 +83,34 @@ public class StartSettings : MonoBehaviour
 
     }
     
+     public void IncreaseShieldSize()
+    {
+        GameStartSettings.shieldSize = GameObject.Find("ShieldSizeSlider").GetComponent<Slider>().value;
+
+    }
+    public void SetShieldDuration()
+    {
+        GameStartSettings.shieldDuration = (int) GameObject.Find("ShieldDurationSlider").GetComponent<Slider>().value;
+    }
+    public void AddBallAmount(int s)
+    {
+        GameStartSettings.ballAmount += s;
+        if (GameStartSettings.ballAmount < 1) { GameStartSettings.ballAmount = 1; }
+
+    }
+    public void IncreaseBallWeight ()
+    {
+        GameStartSettings.ballWeight = GameObject.Find("BallWeightSlider").GetComponent<Slider>().value;
+    }
+    public void SetPlayerSpeed()
+    {
+        GameStartSettings.playerSpeed = (int) GameObject.Find("PlayerSpeedSlider").GetComponent<Slider>().value;
+    }
+    public void SetWinningScore(int s)
+    {
+        GameStartSettings.winningScore += s;
+        if (GameStartSettings.winningScore < 2) { GameStartSettings.winningScore = 2; }
+    }
+
+
 }
