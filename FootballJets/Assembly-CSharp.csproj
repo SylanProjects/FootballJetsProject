@@ -134,6 +134,7 @@
     <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponList.cs" />
     <Compile Include="Assets\StartSettings.cs" />
+    <Compile Include="Assets\Testing.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\TutorialInfo.cs" />
     <Compile Include="Assets\Wall.cs" />
     <Compile Include="Assets\WinGameController.cs" />

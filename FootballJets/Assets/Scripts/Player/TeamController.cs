@@ -11,7 +11,7 @@ public class TeamController : MonoBehaviour
     public TeamController opponentTeam;
     private int score = 0;
     
-
+    
     public void AddPoint(int points)
     {
         score += points;

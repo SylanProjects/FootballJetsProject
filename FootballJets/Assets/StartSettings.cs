@@ -47,10 +47,11 @@ public class StartSettings : MonoBehaviour
         blueTeamScore.text = "" + GameStatus.blueTeamScore;
         redTeamScore.text = "" + GameStatus.redTeamScore;
 
+        GameObject.Find("BlueTeamP1Toggle").GetComponent<Toggle>().onValueChanged.AddListener((value) => { SetBlueTeamP1AI(value); } );
+        GameObject.Find("RedTeamP1Toggle").GetComponent<Toggle>().onValueChanged.AddListener((value) => { SetRedTeamP1AI(value); } );
 
 
-
-}
+    }
     
     public void AddHealth(int health)
     {
@@ -111,6 +112,16 @@ public class StartSettings : MonoBehaviour
         GameStartSettings.winningScore += s;
         if (GameStartSettings.winningScore < 2) { GameStartSettings.winningScore = 2; }
     }
+    public void SetBlueTeamP1AI(bool a)
+    {
+        GameStartSettings.blueTeamP1AI = a;
+
+    }
+    public void SetRedTeamP1AI(bool a)
+    {
+        GameStartSettings.redTeamP1AI = a;
+    }
+
 
 
 }

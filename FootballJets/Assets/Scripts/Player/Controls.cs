@@ -13,15 +13,13 @@ public class Controls : MonoBehaviour
     public Shield shield;
     public Weapon weapon;
 
-    public bool aiControlled;
-    
-
+    private bool aiControlled;
     private PlayerConfig playerConfig;
     private bool useLeftToRotate;
 
     public void Start()
     {
-
+        aiControlled = false;
         playerConfig = playerController.playerConfig;
         useLeftToRotate = playerController.globalSettings.useLeftToRotate;
     }
@@ -106,6 +104,10 @@ public class Controls : MonoBehaviour
     public void Reload()
     {
         weapon.Reload();
+    }
+    public void SetAI(bool v)
+    {
+        aiControlled = v;
     }
 
 }

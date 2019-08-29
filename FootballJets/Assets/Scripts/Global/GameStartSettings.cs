@@ -21,4 +21,7 @@ public static class GameStartSettings
     public static int winningScore = 10;
     public static float shieldDuration = 4;
 
+    public static bool blueTeamP1AI = false;
+    public static bool redTeamP1AI = true;
+
 }

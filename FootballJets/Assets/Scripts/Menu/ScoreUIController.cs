@@ -5,18 +5,17 @@ using UnityEngine.UI;
 
 public class ScoreUIController : MonoBehaviour
 {
-    // This method keeps an info on the team scores.
+    // This class an info on the team scores.
     public TeamController blueTeam;
     public TeamController redTeam;
     public Text scoreText;
-
     void Start()
     {
         scoreText.text = blueTeam.GetScore().ToString() + " : " + blueTeam.GetScore();
     }
-
     void Update()
     {
+        // Build a string from the scores
         int p1Score = blueTeam.GetScore();
         int p2Score = redTeam.GetScore();
         

@@ -18,7 +18,8 @@ public class GameController : MonoBehaviour
         {
             Instantiate(ballPrefab);
         }
-
+        redTeam.player1.GetComponent<Controls>().SetAI(GameStartSettings.redTeamP1AI);
+        blueTeam.player1.GetComponent<Controls>().SetAI(GameStartSettings.blueTeamP1AI);
     }
     
 
