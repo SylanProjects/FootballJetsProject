@@ -8,7 +8,7 @@ public static class AIMovementBehaviour
     {
         /* This method makes the player look at the object. 
          * This is usually used to make the player look at the ball. 
-         * First the position of the object we want to look at, in regards of the player
+         * First, the position of the object we want to look at, in regards of the player
          * is found and then the player is rotated. 
          */
         float x = o.transform.position.x - player.transform.position.x;
@@ -29,10 +29,9 @@ public static class AIMovementBehaviour
          * take care of the direction. To make the player run to the ball
          * use RunToTheBall method.
          */
-        double radians = player.transform.eulerAngles.z * Mathf.PI / 180;
-        float x = Mathf.Cos((float)radians);
-        float y = Mathf.Sin((float)radians);
-        AIBasicBehaviour.GetController(player).playerController.MovePlayer(x, y);
+        
+        Vector2 dir = AIDirectionBehaviour.GetRotationVector(player);
+        AIBasicBehaviour.GetController(player).playerController.MovePlayer(dir.x, dir.y);
 
     }
     public static void MoveForward(GameObject player, float x, float y)
@@ -44,31 +43,19 @@ public static class AIMovementBehaviour
     public static void MoveBackward(GameObject player)
     {
         // Works the same as above but x and y are flipped
-        double radians = player.transform.eulerAngles.z * Mathf.PI / 180;
-        float x = Mathf.Cos((float)radians);
-        float y = Mathf.Sin((float)radians);
-        AIBasicBehaviour.GetController(player).playerController.MovePlayer(-x, -y);
+        Vector2 dir = AIDirectionBehaviour.GetRotationVector(player);
+        AIBasicBehaviour.GetController(player).playerController.MovePlayer(-dir.x, -dir.y);
     }
-    public static void MoveUp(GameObject player)
-    {
-        double radians = player.transform.eulerAngles.z * Mathf.PI / 180;
-        float x = Mathf.Cos((float)radians);
-        float y = Mathf.Sin((float)radians);
-        AIBasicBehaviour.GetController(player).playerController.MovePlayer(x * 0.5f, y);
-    }
+   
     public static void RunToTheBall(GameObject player, GameObject ball)
     {
         /* This method requires the player character to look at the ball first. 
          */
-        //LookAt(player, ball);
-        // MoveForward(player);
         MoveTowards(player, ball.transform.position.x, ball.transform.position.y);
 
     }
     public static void RunAwayFromBall(GameObject player, GameObject ball)
     {
-        // LookAt(player, ball);
-        // MoveBackward(player);
         MoveTowards(player, ball.transform.position.x, ball.transform.position.y);
     }
     public static void MoveTowards(GameObject player, float x, float y)
@@ -87,10 +74,5 @@ public static class AIMovementBehaviour
         float y = destination.transform.position.y;
         MoveTowards(player, x, y);
     }
-    public static void GetAPickup(GameObject player)
-    {
-        /* Locate closest pickup
-         * Move to its position 
-         */
-    }
+    
 }
