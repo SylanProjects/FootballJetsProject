@@ -63,9 +63,9 @@ public class AIAttackState : AIState
                 AIBasicBehaviour.UseGun(player);
                 AIMovementBehaviour.MoveTowards(player, ball);
             }
-            else if (CheckIfCloseToPickup())
+            else if (AICheckBehaviour.CheckIfCloseToPickup(GetActivePickups(), player))
             {
-                AIMovementBehaviour.LookAt(player, GetClosestPickup());
+                AIMovementBehaviour.LookAt(player, AICheckBehaviour.GetClosestPickup(GetActivePickups(), GetActiveCount(), player));
                 AIMovementBehaviour.MoveForward(player);
             }
             else
@@ -82,9 +82,9 @@ public class AIAttackState : AIState
         if (AICheckBehaviour.FarFromBall(player, ball))
         {
             AIBasicBehaviour.Sprint(player, 1);
-            if (CheckIfCloseToPickup())
+            if (AICheckBehaviour.CheckIfCloseToPickup(GetActivePickups(), player))
             {
-                AIMovementBehaviour.LookAt(player, GetClosestPickup());
+                AIMovementBehaviour.LookAt(player, AICheckBehaviour.GetClosestPickup(GetActivePickups(), GetActiveCount(), player));
                 AIMovementBehaviour.MoveForward(player);
             }
             else 
@@ -106,13 +106,13 @@ public class AIAttackState : AIState
          */
         if (AICheckBehaviour.FarFromBall(player, ball))
         {
-            if (CheckIfCloseToOpponent())
+            if (AICheckBehaviour.CheckIfCloseToOpponent(player, opponent))
             {
                 AIMovementBehaviour.LookAt(player, opponent);
                 AIBasicBehaviour.UseSword(player);
                 AIMovementBehaviour.MoveTowards(player, ball);
             }
-            else if (CheckOpponentsHealth())
+            else if (AICheckBehaviour.CheckOpponentsHealth(opponent))
             {
                 AIMovementBehaviour.LookAt(player, opponent);
                 AIBasicBehaviour.UseGun(player);
@@ -127,7 +127,7 @@ public class AIAttackState : AIState
         }
         else
         {
-            if (CheckIfBallApproaching())
+            if (AICheckBehaviour.CheckIfBallApproaching(player, ball))
             {
                 AIBasicBehaviour.UseShield(player);
             }
@@ -142,13 +142,13 @@ public class AIAttackState : AIState
         if (AICheckBehaviour.FarFromBall(player, ball))
         {
             AIBasicBehaviour.Sprint(player, 1);
-            if (CheckIfCloseToOpponent())
+            if (AICheckBehaviour.CheckIfCloseToOpponent(player, opponent))
             {
                 AIMovementBehaviour.LookAt(player, opponent);
                 AIBasicBehaviour.UseSword(player);
                 AIMovementBehaviour.MoveTowards(player, ball);
             }
-            else if (CheckOpponentsHealth())
+            else if (AICheckBehaviour.CheckOpponentsHealth(opponent))
             {
                 AIMovementBehaviour.LookAt(player, opponent);
                 AIBasicBehaviour.UseGun(player);

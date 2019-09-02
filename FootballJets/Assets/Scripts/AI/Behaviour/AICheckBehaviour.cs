@@ -26,9 +26,6 @@ public static class AICheckBehaviour
          */
         PickupActivator closestPickup = null;
         float closestDistance = 100;
-       // List<PickupActivator> activePickups = act//aIController.GetPickupList().GetActivePickups();
-
-        //int activeCount = aIController.GetPickupList().GetActiveCount();
         if (activeCount > 0)
         {
             for (int i = 0; i < activeCount; i++)
@@ -54,7 +51,7 @@ public static class AICheckBehaviour
 
         float distanceFromBall = AICalculate.CalculateLengthBetween(player, ball);
         int allowableDistance = player.GetComponent<PlayerController>().GetGlobalSettings().allowableDistanceFromBall;
-        if (distanceFromBall > allowableDistance)//aIController.GetGlobalSettings().allowableDistanceFromBall)
+        if (distanceFromBall > allowableDistance)
         {
             return true;
         }

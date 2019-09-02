@@ -41,34 +41,29 @@ public class AICalculate
          * the ball. Imagine an arrow a few pixels away from the ball, playerAngle would make it
          * point in the direction of the player, and goalAngle would make it point
          * to the goal (we want to move player to the other side of that point so the ball is 
-         * between the player and the goal).
-         */
+         * between the player and the goal). */
 
-        float ar = player.GetComponent<Counter>().a;
-        double goalAngle = AIDirectionBehaviour.GetRadian(ball, goal, 1);
-        double playerAngle = AIDirectionBehaviour.GetRadian(ball, player, -1);
+        double goalRadian = AIDirectionBehaviour.GetRadian(ball, goal, 1);
+        double playerRadian = AIDirectionBehaviour.GetRadian(ball, player, -1);
+        float counter = player.GetComponent<Counter>().a;
 
         /* To make sure that if the player (AI) is "under" the ball, it does not circle
          * the whole ball to get to the goalAngle position, this part was needed.
          * Since the bottom (0, -1) of the ball is 0 going to the left or 6.3 going to the right
          * i.e. the point where the angle resets, 6.3 is added to move that point to the left 
-         * side of the ball. 
-         */
+         * side of the ball. */
 
-        Vector2 playerDes = AIDirectionBehaviour.GetDirectionVector(playerAngle);
+        Vector2 playerDes = AIDirectionBehaviour.GetDirectionVector(playerRadian);
         Vector2 playerPos = AIDirectionBehaviour.FindPositionOf(ball, playerDes);
         if (playerPos.x > player.transform.position.x && playerPos.y > player.transform.position.y)
         {
-            playerAngle += 6.3;
+            playerRadian += 6.3;
         }
-        float nAngle = (float)playerAngle * (1 - ar) + (float)goalAngle * ar;
-        Vector2 des = AIDirectionBehaviour.GetDirectionVector(nAngle, 1.2f);
+        float newRadian = (float)playerRadian * (1 - counter) + (float)goalRadian * counter;
+        Vector2 des = AIDirectionBehaviour.GetDirectionVector(newRadian, 1.2f);
         Vector2 pos = AIDirectionBehaviour.FindPositionOf(ball, des);
-
         return new Vector2(pos.x, pos.y);
-
     }
-
     public static Vector2 AvoidTheBall(GameObject player, GameObject ball, GameObject goal, float r)
     {
         // Probably useless
@@ -87,6 +82,12 @@ public class AICalculate
         float nAngle = (float)playerAngle * (1 - r) + (float)goalAngle * r;
 
         Vector2 des = AIDirectionBehaviour.GetDirectionVector(nAngle, 2 - (r));
+        return AIDirectionBehaviour.FindPositionOf(ball, des);
+    }
+    public static Vector2 GoRoundTheBall(GameObject ball, GameObject goal)
+    {
+        double goalAngle = AIDirectionBehaviour.GetRadian(ball, goal, 1);
+        Vector2 des = AIDirectionBehaviour.GetDirectionVector(goalAngle);
         return AIDirectionBehaviour.FindPositionOf(ball, des);
     }
 }

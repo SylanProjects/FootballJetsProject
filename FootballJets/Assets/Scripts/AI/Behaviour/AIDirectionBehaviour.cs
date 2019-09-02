@@ -55,11 +55,10 @@ public static class AIDirectionBehaviour
 
     public static Vector2 FindPositionOf(GameObject source, GameObject destination, float offset)
     {
-        /* This method is a reversed version of the FindDirectionVector method. 
+        /* This method is a reversed version of the GetDirectionVector method. 
          * It finds a direction vector towards a wanted object (destination) and
          * then finds the x and y coordinates of that direction vector.
-         * It is used when guiding the AI to avoid the ball. 
-         */
+         * It is used when guiding the AI to avoid the ball. */
         Vector2 directionVector = GetDirectionVector(source, destination, offset);
         float x2 = directionVector.x;
         float y2 = directionVector.y;
@@ -68,7 +67,6 @@ public static class AIDirectionBehaviour
         float sourcey = source.transform.position.y - x2;
 
         return new Vector2(sourcex, sourcey);
-
     }
     public static Vector2 FindPositionOf(GameObject source, Vector2 directionVector)
     {

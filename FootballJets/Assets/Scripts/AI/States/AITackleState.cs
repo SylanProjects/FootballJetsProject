@@ -41,9 +41,9 @@ public class AITackleState : AIState
                 AIBasicBehaviour.UseGun(player);
                 AIMovementBehaviour.MoveTowards(player, ball);
             }
-            else if (CheckIfCloseToPickup())
+            else if (AICheckBehaviour.CheckIfCloseToPickup(GetActivePickups(), player))
             {
-                AIMovementBehaviour.LookAt(player, GetClosestPickup());
+                AIMovementBehaviour.LookAt(player, AICheckBehaviour.GetClosestPickup(GetActivePickups(), GetActiveCount(), player));
                 AIMovementBehaviour.MoveForward(player);
             }
             else
@@ -53,12 +53,12 @@ public class AITackleState : AIState
         }
         else
         {
-            if (CheckIfCloseToOpponent())
+            if (AICheckBehaviour.CheckIfCloseToOpponent(player, opponent))
             {
                 AIMovementBehaviour.LookAt(player, opponent);
                 AIBasicBehaviour.UseSword(player);
             }
-            else if (CheckOpponentsHealth())
+            else if (AICheckBehaviour.CheckOpponentsHealth(opponent))
             {
                 AIMovementBehaviour.LookAt(player, opponent);
                 AIBasicBehaviour.UseGun(player);
@@ -72,9 +72,9 @@ public class AITackleState : AIState
          */
         if (AICheckBehaviour.FarFromBall(player, ball))
         {
-            if (CheckIfCloseToPickup())
+            if (AICheckBehaviour.CheckIfCloseToPickup(GetActivePickups(), player))
             {
-                AIMovementBehaviour.LookAt(player, GetClosestPickup());
+                AIMovementBehaviour.LookAt(player, AICheckBehaviour.GetClosestPickup(GetActivePickups(), GetActiveCount(), player));
                 AIMovementBehaviour.MoveForward(player);
             }
             AIGlobalBehaviour.PositionAndShoot(player, ball, goal);
@@ -97,7 +97,7 @@ public class AITackleState : AIState
         }
         else
         {
-            if (CheckIfBallApproaching())
+            if (AICheckBehaviour.CheckIfBallApproaching(player, ball))
             {
                 AIBasicBehaviour.UseShield(player);
             }
@@ -113,7 +113,7 @@ public class AITackleState : AIState
          
         if (AICheckBehaviour.FarFromBall(player, ball))
         {
-            if (CheckIfCloseToOpponent())
+            if (AICheckBehaviour.CheckIfCloseToOpponent(player, opponent))
             {
                 AIMovementBehaviour.LookAt(player, opponent);
                 AIBasicBehaviour.UseSword(player);

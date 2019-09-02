@@ -64,7 +64,7 @@ public class AIDefendState : AIState
         }
         else
         {
-            if (CheckIfBallApproaching())
+            if (AICheckBehaviour.CheckIfBallApproaching(player, ball))
             {
                 AIBasicBehaviour.UseShield(player);
             }
@@ -95,7 +95,7 @@ public class AIDefendState : AIState
         }
         else
         {
-            if (CheckIfBallApproaching())
+            if (AICheckBehaviour.CheckIfBallApproaching(player, ball))
             {
                 AIBasicBehaviour.UseShield(player);
             }

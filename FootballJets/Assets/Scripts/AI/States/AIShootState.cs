@@ -67,14 +67,14 @@ public class AIShootState : AIState
          */
         if (AICheckBehaviour.FarFromBall(player, ball))
         {
-            if (CheckOpponentsHealth())
+            if (AICheckBehaviour.CheckOpponentsHealth(opponent))
             {
                 AIMovementBehaviour.LookAt(player, opponent);
                 AIBasicBehaviour.UseGun(player);
             }
-            else if (CheckIfCloseToPickup())
+            else if (AICheckBehaviour.CheckIfCloseToPickup(GetActivePickups(), player))
             {
-                AIMovementBehaviour.LookAt(player, GetClosestPickup());
+                AIMovementBehaviour.LookAt(player, AICheckBehaviour.GetClosestPickup(GetActivePickups(), GetActiveCount(), player));
                 AIMovementBehaviour.MoveForward(player);
             }
             else
@@ -108,7 +108,7 @@ public class AIShootState : AIState
         }
         else
         {
-            if (CheckIfBallApproaching())
+            if (AICheckBehaviour.CheckIfBallApproaching(player, ball))
             {
                 AIBasicBehaviour.UseShield(player);
             }
