@@ -22,7 +22,7 @@ public class AIController : MonoBehaviour
 
     public PickupList pickupList;
     private float xPos;
-
+    private float boundary;
 
 
     private Controls controller;
@@ -31,6 +31,7 @@ public class AIController : MonoBehaviour
         controller = player.gameObject.GetComponent<Controls>();
         FixedUpdate();
         xPos = 0;
+        boundary = player.GetComponent<PlayerController>().team.GetStateBoundary();
     }
     public void FixedUpdate()
     {
@@ -40,27 +41,26 @@ public class AIController : MonoBehaviour
          * the AI should change its behaviour based on how far away/close he is
          * from its own and from the opponents goal.
          */
-        xPos = ball.transform.position.x;
-        float b = player.GetComponent<PlayerController>().team.GetStateBoundary();
+        
         AIBasicBehaviour.Sprint(player, 0);
-        if (xPos >= b)
+
+        xPos = ball.transform.position.x;
+        if (xPos >= boundary)
         {
             defendState.Run();
         }
-        else if (xPos < b && xPos > 0)
+        else if (xPos < boundary && xPos > 0)
         {
             tackleState.Run();
         }
-        else if (xPos < 0 && xPos > -b)
+        else if (xPos < 0 && xPos > -boundary)
         {
             attackState.Run();
         }
-        else if (xPos <= -b)
+        else if (xPos <= -boundary)
         {
             shootState.Run();
         }
-        xPos = ball.transform.position.x;
-
     }
    
     public GameObject GetPlayerObject()

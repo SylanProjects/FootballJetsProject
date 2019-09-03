@@ -5,16 +5,10 @@ using UnityEngine.UI;
 
 public class AIAttackState : AIState
 {
-    
+    /* When ball is in this state the AI should try and take the ball away from the player.
+         * There are four positions that the ball and the players can be in. */
     public new void Run()
     {
-
-        /* When ball is in this state the AI should try and take the ball away from the player.
-         * There are four positions that the ball and the players can be in. 
-         * 
-         */
-
-        
         int position = AIHelperMethods.GetPositionStatus(player, opponent, ball, goal);
         switch (position)
         {
@@ -34,7 +28,6 @@ public class AIAttackState : AIState
                 RunThreePosition();
                 break;
         }
-
     }
     public new void RunZeroPosition()
     {

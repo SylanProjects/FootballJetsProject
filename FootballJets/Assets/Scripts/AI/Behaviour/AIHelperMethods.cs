@@ -29,7 +29,7 @@ public static class AIHelperMethods
     public static int GetPositionStatus(GameObject aiPlayer, GameObject player, GameObject ball, GameObject goal)
     {
         /* 0, 1, 2 or 3
-         * 0 is when the ball is between the opponents (player) goal and the AIPlayer and the player.
+         * 0 is when the ball is between the opponents goal and AIPlayer and the player.
          * (opponent in this case is the player, which may or may not be another AIPlayer). 
          * This position is the most beneficial for the aiPlayer object because it
          * can be easier to shoot the ball at the goal.
@@ -52,13 +52,13 @@ public static class AIHelperMethods
         float ballXPosition = ball.transform.position.x;
         float goalXPosition = goal.transform.position.x;
 
+        bool aiIsOnTheLeftToPlayer = aiXPosition < playerXPosition;
+
         bool goalIsOnTheLeft = goalXPosition < ballXPosition;
         bool aiIsOnTheLeftToBall = aiXPosition < ballXPosition;
         bool playerIsOnTheLeftToBall = playerXPosition < ballXPosition;
-        bool aiIsOnTheLeftToPlayer = aiXPosition < playerXPosition;
         bool ballIsOnTheLeftToPlayerAndAI = !playerIsOnTheLeftToBall && !aiIsOnTheLeftToBall;
         bool ballIsOnTheRightToPlayerAndAI = playerIsOnTheLeftToBall && aiIsOnTheLeftToBall;
-
         // 0
         bool zeroPosition = (goalIsOnTheLeft & ballIsOnTheLeftToPlayerAndAI) || (!goalIsOnTheLeft & ballIsOnTheRightToPlayerAndAI);
 
