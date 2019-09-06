@@ -31,20 +31,20 @@ public static class AIMovementBehaviour
          */
         
         Vector2 dir = AIDirectionBehaviour.GetRotationVector(player);
-        AIBasicBehaviour.GetController(player).playerController.MovePlayer(dir.x, dir.y);
+        AIBasicBehaviour.GetController(player).playerController.playerMovement.MovePlayer(dir.x, dir.y);
 
     }
     public static void MoveForward(GameObject player, float x, float y)
     {
         /* x and y are not the position of the object but the vector towards it. 
         */
-        AIBasicBehaviour.GetController(player).playerController.MovePlayer(x, y);
+        AIBasicBehaviour.GetController(player).playerController.playerMovement.MovePlayer(x, y);
     }
     public static void MoveBackward(GameObject player)
     {
         // Works the same as above but x and y are flipped
         Vector2 dir = AIDirectionBehaviour.GetRotationVector(player);
-        AIBasicBehaviour.GetController(player).playerController.MovePlayer(-dir.x, -dir.y);
+        AIBasicBehaviour.GetController(player).playerController.playerMovement.MovePlayer(-dir.x, -dir.y);
     }
    
     public static void RunToTheBall(GameObject player, GameObject ball)

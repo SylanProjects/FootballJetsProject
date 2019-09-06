@@ -13,6 +13,7 @@ public class Controls : MonoBehaviour
     public Shield shield;
     public Weapon weapon;
 
+    private PlayerMovement playerMovement;
     private bool aiControlled;
     private PlayerConfig playerConfig;
     private bool useLeftToRotate;
@@ -22,6 +23,7 @@ public class Controls : MonoBehaviour
         aiControlled = false;
         playerConfig = playerController.playerConfig;
         useLeftToRotate = playerController.globalSettings.useLeftToRotate;
+        playerMovement = playerController.playerMovement;
     }
     void FixedUpdate()
     {
@@ -32,7 +34,7 @@ public class Controls : MonoBehaviour
             float moveHorizontal = Input.GetAxis(playerConfig.horizontalL);
             float moveVertical = Input.GetAxis(playerConfig.verticalL);
             // Movement
-            playerController.MovePlayer(moveHorizontal, moveVertical);
+            playerMovement.MovePlayer(moveHorizontal, moveVertical);
 
             /*
              * Looking direction - player does not have to move in the direction
@@ -54,7 +56,7 @@ public class Controls : MonoBehaviour
             playerRotator.Rotate(lookHorizontal, lookVertical);
 
             // Sprint
-            playerController.Sprint(sprint);
+            playerMovement.Sprint(sprint);
 
 
             // Sword, Shield, Weapon

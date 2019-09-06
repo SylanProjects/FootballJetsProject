@@ -66,6 +66,7 @@
     <Compile Include="Assets\_Completed-Assets\Scripts\CompleteRotator.cs" />
     <Compile Include="Assets\BallSizeControl.cs" />
     <Compile Include="Assets\GameController.cs" />
+    <Compile Include="Assets\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\AI\AIController.cs" />
     <Compile Include="Assets\Scripts\AI\AILineOfSight.cs" />
     <Compile Include="Assets\Scripts\AI\AIUserInterface.cs" />

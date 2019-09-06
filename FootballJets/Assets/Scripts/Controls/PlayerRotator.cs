@@ -20,7 +20,7 @@ public class PlayerRotator : MonoBehaviour
    
     public void Rotate(float lookHorizontal, float lookVertical)
     {
-        if ((lookHorizontal > playerController.deadZone || lookHorizontal < -playerController.deadZone) || (lookVertical > playerController.deadZone || lookVertical < -playerController.deadZone))
+        if ((lookHorizontal > playerController.playerMovement.deadZone || lookHorizontal < -playerController.playerMovement.deadZone) || (lookVertical > playerController.playerMovement.deadZone || lookVertical < -playerController.playerMovement.deadZone))
         {
             h = lookHorizontal;
             v = lookVertical;

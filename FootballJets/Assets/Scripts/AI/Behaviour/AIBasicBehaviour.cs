@@ -36,7 +36,7 @@ public static class AIBasicBehaviour
     }
     public static void Sprint(GameObject player, int s)
     {
-        player.GetComponent<PlayerController>().Sprint(s* -1);
+        player.GetComponent<PlayerController>().playerMovement.Sprint(s* -1);
     }
     public static void SetGun(GameObject player, string gunName)
     {

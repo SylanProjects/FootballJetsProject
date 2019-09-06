@@ -22,7 +22,7 @@ public class Stats : MonoBehaviour
         weapon.weaponList.AddAmmo("MachineGun", GameStartSettings.machineGunAmmo);
 
     }
-    public void Update()
+    public void FixedUpdate()
     {
         ReplenishHealth();
     }
