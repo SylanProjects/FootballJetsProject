@@ -37,18 +37,13 @@ public class BallController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("LeftGoal"))
         {
-
             redTeam.GetComponent<TeamController>().AddPoint(1);
             ResetPlayers();
-            
         }
         if (other.gameObject.CompareTag("RightGoal"))
-        {
-            
+        { 
             blueTeam.GetComponent<TeamController>().AddPoint(1);
             ResetPlayers();
-           
-
         }
     }
     

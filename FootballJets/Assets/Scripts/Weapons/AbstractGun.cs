@@ -44,11 +44,6 @@ public abstract class AbstractGun : MonoBehaviour, IGun
         }
         
     }
-
-
-    
-   
-
     public void Reload()
     {
         /*
@@ -65,18 +60,14 @@ public abstract class AbstractGun : MonoBehaviour, IGun
                 int aAmmo = availableAmmo; // Ammo already in the magazine
                 availableAmmo += magazineSize - aAmmo;
                 ammo -= magazineSize - aAmmo;
-
             }
-
             else if (ammo > 0 && ammo < magazineSize)
             {
                 int aAmmo = availableAmmo;
                 availableAmmo += ammo - aAmmo;
                 ammo = aAmmo;
             }
-        }
-        
-        
+        }  
     }
 
     public virtual void Shoot()
@@ -88,9 +79,7 @@ public abstract class AbstractGun : MonoBehaviour, IGun
          */
         if (availableAmmo > 0 && readyToShoot)
         {
-            
             body.Pullback(0.5f);
-
             weapon.soundPlayer.PlaySound(weapon.soundSource, shootSFX);
             weapon.shooter.Fire(bulletPrefab, weapon.firePoint);
             availableAmmo -= 1;
@@ -103,7 +92,6 @@ public abstract class AbstractGun : MonoBehaviour, IGun
             Reload();
             Shoot();
         } 
-        
     }
     public void Delay()
     {
@@ -118,17 +106,13 @@ public abstract class AbstractGun : MonoBehaviour, IGun
             countdown = 0;
             reloading = false;
         }
-
     }
-    
-    
     public void DelayFor(float time)
     {
         readyToShoot = false;
         countdown = reloadDelayTime;
         Delay();
     }
-
     public bool CheckIfReloading()
     {
         return this.reloading;
