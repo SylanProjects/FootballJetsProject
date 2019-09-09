@@ -33,8 +33,8 @@ public class WinGameController : MonoBehaviour
     }
     public void ShowWinScreen()
     {
-        // TODO
-        sceneSwitcher.SceneSwitch(2);
+       
+        sceneSwitcher.SceneSwitch(3);
     }
     private void SetStatus()
     {
