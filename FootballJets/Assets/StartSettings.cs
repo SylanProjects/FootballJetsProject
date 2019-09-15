@@ -23,7 +23,10 @@ public class StartSettings : MonoBehaviour
     public Text redTeamScore;
     public Text shieldDurationText;
 
-
+    private void Start()
+    {
+        GameStartSettings.redTeamP1AI = true;
+    }
     public void Update()
     {
         healthText.text =  "" + GameStartSettings.health;
@@ -47,8 +50,9 @@ public class StartSettings : MonoBehaviour
         blueTeamScore.text = "" + GameStatus.blueTeamScore;
         redTeamScore.text = "" + GameStatus.redTeamScore;
 
-        GameObject.Find("BlueTeamP1Toggle").GetComponent<Toggle>().onValueChanged.AddListener((value) => { SetBlueTeamP1AI(value); } );
-        GameObject.Find("RedTeamP1Toggle").GetComponent<Toggle>().onValueChanged.AddListener((value) => { SetRedTeamP1AI(value); } );
+        // GameObject.Find("BlueTeamP1Toggle").GetComponent<Toggle>().onValueChanged.AddListener((value) => { GameStartSettings.blueTeamP1AI = value; } );
+        
+        GameObject.Find("RedTeamP1Toggle").GetComponent<Toggle>().onValueChanged.AddListener((value) => { GameStartSettings.redTeamP1AI = value; } );
 
 
     }

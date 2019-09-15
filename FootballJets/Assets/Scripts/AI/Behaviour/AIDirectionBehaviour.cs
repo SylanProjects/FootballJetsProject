@@ -70,11 +70,8 @@ public static class AIDirectionBehaviour
     }
     public static Vector2 FindPositionOf(GameObject source, Vector2 directionVector)
     {
-        float x2 = directionVector.x;
-        float y2 = directionVector.y;
-
-        float sourcex = source.transform.position.x - y2;
-        float sourcey = source.transform.position.y - x2;
+        float sourcex = source.transform.position.x - directionVector.y;
+        float sourcey = source.transform.position.y - directionVector.x;
 
         return new Vector2(sourcex, sourcey);
     }

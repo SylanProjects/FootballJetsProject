@@ -219,7 +219,7 @@ edec4c602b0001fe25485c47ebf3be6c Unity.2D.IK.Runtime.dll:UnityEditor.Experimenta
 fcb02fac7f8163d9efda79449cd757e1 Assembly-CSharp.dll:.TutorialInfo
 c6666661329916e218bee7f5e79e60f5 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 3165968ba45c74472d279ba04455fccb Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
-5c49765e287bbe71dfd218cc44bb2276 Assembly-CSharp.dll:.GameController
+801f390395e3f411870ab9e0feebd17d Assembly-CSharp.dll:.GameController
 8649814970b42d345b89944b862453cc Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
 2f3a03f3c2e4a8062e7828758243d81c Assembly-CSharp.dll:.AIStateController
 0e1d02c74d354ffc8b804011a794739b Unity.2D.IK.Runtime.dll:UnityEngine.Experimental.U2D.IK.IKManager2D

@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
     public GlobalSettings settings;
     public TeamController redTeam, blueTeam;
     public float time;
-    public GameObject ballPrefab;
+    public GameObject ballPrefab, aIObject;
     void Start()
     {
         
@@ -18,8 +18,10 @@ public class GameController : MonoBehaviour
         {
             Instantiate(ballPrefab);
         }
+        aIObject.SetActive(GameStartSettings.redTeamP1AI);
         redTeam.player1.GetComponent<Controls>().SetAI(GameStartSettings.redTeamP1AI);
         blueTeam.player1.GetComponent<Controls>().SetAI(GameStartSettings.blueTeamP1AI);
+
     }
     
 
@@ -28,6 +30,7 @@ public class GameController : MonoBehaviour
     {
         redTeam.player1.SetActive(check);
         blueTeam.player1.SetActive(check);
+
     }
     
 }

@@ -50,8 +50,8 @@ public class Controls : MonoBehaviour
             }
             else
             {
-                lookHorizontal = Input.GetAxisRaw(playerController.playerConfig.horizontalR);
-                lookVertical = Input.GetAxisRaw(playerController.playerConfig.verticalR);
+                lookHorizontal = Input.GetAxisRaw(playerConfig.horizontalR);
+                lookVertical = Input.GetAxisRaw(playerConfig.verticalR);
             }
             playerRotator.Rotate(lookHorizontal, lookVertical);
 
