@@ -15,7 +15,7 @@ public static class GameStartSettings
     public static int ballAmount = 1;
     public static float ballSize = 1;
     public static float ballWeight = 0.035f; // 0.035
-    public static int playerSpeed = 1700;
+    public static int playerSpeed = 2500;
 
 
     public static int winningScore = 10;

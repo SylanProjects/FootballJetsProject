@@ -25,7 +25,6 @@ public class Sword : MonoBehaviour
         {
             Push();
         }
-
     }
     public void UseSword()
     {
@@ -38,10 +37,8 @@ public class Sword : MonoBehaviour
             playerController.body.Pullback(0.4f);
             playerController.busyState.SetState(true);
             Push();
-
         }
     }
-
     private void Push()
     {
         /*
@@ -72,11 +69,9 @@ public class Sword : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
         if (collision.gameObject.CompareTag("Ball"))
         {
             Bounce(collision, playerController.globalSettings.swordStrength);
-
         }
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -90,6 +85,4 @@ public class Sword : MonoBehaviour
         Vector2 rotation = playerRotation.GetRotation().GetVector();
         collision.attachedRigidbody.AddForce(rotation * (strength * (this.transform.localScale.x / 18) ));
     }
-
-
 }
