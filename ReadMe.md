@@ -1,4 +1,9 @@
-sstrem01
+**About**
+
+This project is a topdown shooter/football game written in Unity Engine using C# programming language.
+I have also designed a fairly complex Artificial Intelligence for this game that makes sophisticated decisions based 
+on the actions taken by the player during the game. The full AI behaviour is explained in the chapter 3.5 of the Report. 
+This game was designed from the bottom up by me for a Master's Dissertation project. 
 
 **Important**
 
@@ -19,11 +24,5 @@ properly adapted to work with other settings - bugs may occur.
 The game is designed around the Gamepad therefore Gamepad is recommended but it 
 can also be played with keyboard by setting the keys in the Input section when turning On the game.
 
-
-**Other**
-
-/ReportBackup includes the Diagrams made for the report and the report itself in .docx format.
-
-/ReportBackup/Pictures includes the pictures and screenshots used throughout the project.
 
 
